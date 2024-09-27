@@ -1,0 +1,46 @@
+/* src/components/navbar.css */
+
+/* Add shadow and make the navbar sticky */
+.navbar-custom {
+    background-color: #dae0f2; /* Light background for the navbar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow effect */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Navbar link styling */
+  .nav-link {
+    position: relative;
+    color: #033F63 !important;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for underline animation */
+  .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #00A3E0; /* Blue underline */
+    transition: width 0.4s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Active page styling */
+  .nav-link.active {
+    font-weight: bold;
+    color: #D72C16 !important; /* Active page text color */
+  }
+  
+  .nav-link.active::after {
+    width: 100%;
+  }
+  
