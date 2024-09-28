@@ -37,7 +37,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <Carousel interval={3000} controls={true} indicators={true} pause="hover">
+    <Carousel interval={3000} controls={true} indicators={true} pause="false">
       {images.map((image, index) => (
         <Carousel.Item key={index}>
           <img
