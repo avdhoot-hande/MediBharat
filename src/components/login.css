@@ -1,0 +1,34 @@
+/* Login.css */
+.login-modal .modal-content {
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px; /* Padding for the content */
+    background-color: #f8f9fa; /* Light background */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transition effects */
+    transform: scale(1.05); /* Scale up for a little pop effect */
+  }
+  
+  .login-modal .modal-header {
+    border-bottom: none; /* Remove bottom border */
+  }
+  
+  .login-modal .modal-title {
+    color: #D72C16; /* Title color */
+  }
+  
+  .login-modal .modal-body {
+    text-align: center; /* Center the content */
+  }
+  
+  .login-modal .form-control {
+    border-radius: 5px; /* Rounded input fields */
+  }
+  
+  .login-modal .btn-primary {
+    background-color: #D72C16; /* Primary button color */
+    border: none; /* No border */
+  }
+  
+  .login-modal .btn-primary:hover {
+    background-color: #00A3E0; /* Change color on hover */
+  }
+  

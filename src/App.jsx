@@ -1,40 +1,43 @@
-// src/App.js
+// src/App.jsx
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import Footer from "./components/footer";
 import SpecialistDoctors from './components/specalist';
 import Features from "./components/features";
-import WhyChooseUs from './components/choose_us';
-import Testimonials from './components/testimonial';
-import PartnerHospitals from './components/partnerhospital';
-import CallToAction from './components/calltoaction';
+import Hospital from './components/hospital'; 
+import HospitalDetail from './components/hospital_detail_page';
+import CallToAction from './components/calltoaction'; 
+import Testimonials from './components/testimonial'; 
+import Login from './components/login';
 
 function App() {
-  return (
-    <>
-      <nav>
-        <Navbar />
-      </nav>
-      <main>
-        <div>
-          <Hero />
-        
-          <SpecialistDoctors/>
-          <Features/>
-          <WhyChooseUs/>
-          <Testimonials/>
-          <PartnerHospitals/>
-          <CallToAction/>
-        </div>
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </>
-
-  );
+    return (
+        <AuthProvider>
+            <Router>
+                <Navbar />
+                <main>
+                    <Routes>
+                        <Route path="/" element={
+                            <>
+                                <Hero />
+                                <SpecialistDoctors />
+                                <Features />
+                                <Testimonials />
+                                <CallToAction />
+                            </>
+                        } />
+                        <Route path="/hospital" element={<Hospital />} />
+                        <Route path="/hospital/:hospitalName" element={<HospitalDetail />} />
+                        <Route path="/login" element={<Login />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </Router>
+        </AuthProvider>
+    );
 }
 
 export default App;

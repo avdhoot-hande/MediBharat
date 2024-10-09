@@ -5,35 +5,46 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap is importe
 const HeroSection = () => {
   const images = [
     {
-      src: 'https://via.placeholder.com/1200x400?text=Image+1',
+      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',  // Image from your public folder
       alt: 'Image 1',
       caption: 'First Slide Label',
-      description: 'This is a description for the first image.'
+      description: 'This is a description for the first image.',
+        // Custom width
+      height: '200px',  // Custom height
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=Image+2',
-      alt: 'Image 2',
-      caption: 'Second Slide Label',
-      description: 'This is a description for the second image.'
+      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',  // Image from your public folder
+      alt: 'Image 1',
+      caption: 'First Slide Label',
+      description: 'This is a description for the first image.',
+        // Custom width
+      height: '200px',  // Custom height
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=Image+3',
-      alt: 'Image 3',
-      caption: 'Third Slide Label',
-      description: 'This is a description for the third image.'
+      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',  // Image from your public folder
+      alt: 'Image 1',
+      caption: 'First Slide Label',
+      description: 'This is a description for the first image.',
+        // Custom width
+      height: '200px',  // Custom height
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=Image+4',
-      alt: 'Image 4',
-      caption: 'Fourth Slide Label',
-      description: 'This is a description for the fourth image.'
+      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',  // Image from your public folder
+      alt: 'Image 1',
+      caption: 'First Slide Label',
+      description: 'This is a description for the first image.',
+        // Custom width
+      height: '200px',  // Custom height
     },
     {
-      src: 'https://via.placeholder.com/1200x400?text=Image+5',
-      alt: 'Image 5',
-      caption: 'Fifth Slide Label',
-      description: 'This is a description for the fifth image.'
-    }
+      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',  // Image from your public folder
+      alt: 'Image 1',
+      caption: 'First Slide Label',
+      description: 'This is a description for the first image.',
+        // Custom width
+      height: '200px',  // Custom height
+    },
+    
   ];
 
   return (

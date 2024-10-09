@@ -1,0 +1,61 @@
+/* src/components/hospital.css */
+.hospital-page {
+  display: flex;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar h3, .sidebar h4 {
+  margin-bottom: 15px;
+}
+
+.react-select-container {
+  margin-bottom: 20px;
+}
+
+.hospital-cards {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.hospital-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.hospital-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.hospital-card h3 {
+  color: #D72C16;
+  margin-top: 10px;
+}
+
+.hospital-card p {
+  margin: 10px 0;
+  color: #333;
+}
+
+.hospital-card a {
+  color: #00A3E0;
+  text-decoration: none;
+  font-weight: bold;
+}
