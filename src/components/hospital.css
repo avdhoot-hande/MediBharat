@@ -1,61 +1,81 @@
-/* src/components/hospital.css */
-.hospital-page {
-  display: flex;
-  padding: 20px;
-}
-
-.sidebar {
-  width: 250px;
-  padding: 20px;
+.hospital-container {
+  padding: 40px;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
-  position: sticky;
-  top: 0;
+  text-align: center;
 }
 
-.sidebar h3, .sidebar h4 {
-  margin-bottom: 15px;
-}
-
-.react-select-container {
+.hospital-title {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.hospital-cards {
-  flex-grow: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filter-dropdown {
+  width: 200px;
+}
+
+.hospital-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .hospital-card {
-  background-color: white;
+  width: 300px; /* Set a fixed width for all cards */
+  height: 400px; /* Set a fixed height for uniformity */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  overflow: hidden;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.hospital-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.hospital-card:hover {
+  transform: scale(1.05);
 }
 
-.hospital-card h3 {
-  color: #D72C16;
+.hospital-image {
+  width: 100%;  /* Ensures the image takes full width of the card */
+  height: 200px; /* Fixed height for consistent sizing */
+  object-fit: cover; /* Ensures the image is cropped properly */
+  border-radius: 8px;
+}
+
+.view-details-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   margin-top: 10px;
 }
 
-.hospital-card p {
-  margin: 10px 0;
-  color: #333;
+.view-details-btn:hover {
+  background-color: #0056b3;
 }
 
-.hospital-card a {
-  color: #00A3E0;
-  text-decoration: none;
-  font-weight: bold;
+.no-results {
+  font-size: 18px;
+  color: #ff0000;
 }

@@ -1,73 +1,78 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Select from 'react-select'; // Import react-select
-import hospitalData from '../data/hospitalData';
+import Select from 'react-select';
+import hospitalData from './hospitalData';
 import './hospital.css';
 
 const Hospital = () => {
-  const [locationFilter, setLocationFilter] = useState(null); // State for location filter
-  const [priceFilter, setPriceFilter] = useState(null); // State for price range filter
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedPriceRange, setSelectedPriceRange] = useState('');
+  const [selectedTreatment, setSelectedTreatment] = useState('');
 
-  // Get unique locations and price ranges dynamically from data
-  const uniqueLocations = [...new Set(hospitalData.map(hospital => hospital.location))];
-  const uniquePriceRanges = [...new Set(hospitalData.map(hospital => hospital.priceRange))];
+  // Extract unique locations, price ranges, and treatments from hospitalData
+  const locations = [...new Set(hospitalData.map(hospital => hospital.location))];
+  const priceRanges = [...new Set(hospitalData.map(hospital => hospital.priceRange))];
+  const treatments = [...new Set(hospitalData.flatMap(hospital => hospital.services))];
 
-  // Convert unique locations and price ranges into format that react-select accepts
-  const locationOptions = uniqueLocations.map(location => ({ value: location, label: location }));
-  const priceOptions = uniquePriceRanges.map(price => ({ value: price, label: price }));
-
-  // Filter hospitals based on selected filters
-  const filteredHospitals = hospitalData.filter((hospital) => {
-    return (
-      (!locationFilter || hospital.location === locationFilter.value) && // Apply location filter
-      (!priceFilter || hospital.priceRange === priceFilter.value) // Apply price range filter
-    );
-  });
+  // Filtering Logic
+  const filteredHospitals = hospitalData.filter(hospital => 
+    (searchTerm === '' || hospital.name.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (selectedLocation === '' || hospital.location === selectedLocation) &&
+    (selectedPriceRange === '' || hospital.priceRange === selectedPriceRange) &&
+    (selectedTreatment === '' || hospital.services.includes(selectedTreatment))
+  );
 
   return (
-    <div className="hospital-page">
-      {/* Sidebar for filtering */}
-      <div className="sidebar">
-        <h3>Filter Hospitals</h3>
+    <div className="hospital-container">
+      <h2 className="hospital-title">Find the Best Hospitals for Your Treatment</h2>
 
-        {/* Location Filter */}
-        <h4>Location</h4>
-        <Select
-          options={locationOptions} // Dynamic location options
-          onChange={(selectedOption) => setLocationFilter(selectedOption)} // Handle location selection
-          isClearable // Allow clearing the selection
-          placeholder="Select a location"
+      {/* Search and Filter Section */}
+      <div className="filters">
+        <input
+          type="text"
+          placeholder="Search by hospital name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-bar"
         />
 
-        {/* Price Range Filter */}
-        <h4>Price Range</h4>
         <Select
-          options={priceOptions} // Dynamic price options
-          onChange={(selectedOption) => setPriceFilter(selectedOption)} // Handle price selection
-          isClearable // Allow clearing the selection
-          placeholder="Select a price range"
+          options={[{ value: '', label: 'All Locations' }, ...locations.map(loc => ({ value: loc, label: loc }))]}
+          onChange={(selected) => setSelectedLocation(selected?.value || '')}
+          placeholder="Filter by Location"
+          className="filter-dropdown"
+        />
+
+        <Select
+          options={[{ value: '', label: 'All Price Ranges' }, ...priceRanges.map(price => ({ value: price, label: price }))]}
+          onChange={(selected) => setSelectedPriceRange(selected?.value || '')}
+          placeholder="Filter by Price"
+          className="filter-dropdown"
+        />
+
+        <Select
+          options={[{ value: '', label: 'All Treatments' }, ...treatments.map(treatment => ({ value: treatment, label: treatment }))]}
+          onChange={(selected) => setSelectedTreatment(selected?.value || '')}
+          placeholder="Filter by Treatment"
+          className="filter-dropdown"
         />
       </div>
 
       {/* Hospital Cards */}
-      <div className="hospital-cards">
+      <div className="hospital-list">
         {filteredHospitals.length > 0 ? (
           filteredHospitals.map((hospital, index) => (
             <div key={index} className="hospital-card">
-              <img
-                src={hospital.image}
-                alt={hospital.name}
-                style={{ width: '100%', borderRadius: '10px' }}
-              />
+              <img src={hospital.image} alt={hospital.name} className="hospital-image" />
               <h3>{hospital.name}</h3>
               <p><strong>Location:</strong> {hospital.location}</p>
-              <p><strong>Services:</strong> {hospital.description}</p>
               <p><strong>Price Range:</strong> {hospital.priceRange}</p>
-              <Link to={`/hospital/${hospital.name}`}>View Details</Link> {/* Dynamic link */}
+              <p><strong>Treatments:</strong> {hospital.services.join(', ')}</p>
+              <button className="view-details-btn">View Details</button>
             </div>
           ))
         ) : (
-          <p>No hospitals match your filters.</p>
+          <p className="no-results">No hospitals found for your selection.</p>
         )}
       </div>
     </div>
