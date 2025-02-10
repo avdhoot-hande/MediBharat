@@ -1,49 +1,92 @@
-/* src/components/navbar.css */
+.top-bar {
+  background-color: #004085;
+  color: white;
+  padding: 5px 0;
+  font-size: 14px;
+}
 
-/* Add shadow and make the navbar sticky */
+.top-bar .social-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.top-bar .contact-info {
+  margin-left: 15px;
+}
+
 .navbar-custom {
-  background-color: #dae0f2;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-  position: sticky !important;  /* Override Bootstrap's position */
-  top: 0;
-  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.navbar-custom .navbar-brand {
+  display: flex;
+  align-items: center;
+}
 
-/* Navbar link styling */
-.nav-link {
-  position: relative;
-  color: #033F63 !important;
+.brand-logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.brand-text h5 {
+  margin: 0;
   font-size: 18px;
-  text-transform: uppercase;
-  padding: 10px 15px;
-  transition: all 0.3s ease;
+  font-weight: bold;
 }
 
-/* Hover effect for underline animation */
-.nav-link::after {
-  content: '';
+.brand-text span {
+  color: #004085;
+}
+
+/* Default link styles */
+.navbar-custom .nav-link {
+  color: #333;
+  font-weight: 500;
+  margin-right: 15px;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect: Underline moves from left to right */
+.navbar-custom .nav-link::after {
+  content: "";
   display: block;
   width: 0;
-  height: 3px;
-  background: #00A3E0; /* Blue underline */
-  transition: width 0.4s ease;
+  height: 2px;
+  background-color: #004085;
   position: absolute;
-  bottom: 0;
+  bottom: -3px;
   left: 0;
+  transition: width 0.3s ease-in-out;
 }
 
-.nav-link:hover::after {
+.navbar-custom .nav-link:hover::after {
   width: 100%;
 }
 
-/* Active page styling */
-.nav-link.active {
+/* Active link styling */
+.navbar-custom .nav-link.active {
+  color: rgb(92, 100, 172) !important;
   font-weight: bold;
-  color: #D72C16 !important; /* Active page text color */
+  text-decoration: underline;
 }
 
-.nav-link.active::after {
-  width: 100%;
+.navbar-custom .btn-primary {
+  background-color: #004085;
+  border: none;
+}
+
+.navbar-custom .btn-primary:hover {
+  background-color: #002752;
+}
+
+.dropdown-menu {
+  min-width: 180px;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
 }

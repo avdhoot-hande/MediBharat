@@ -1,10 +1,9 @@
-// src/components/navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { LinkContainer } from 'react-router-bootstrap';
 import Login from './login';
-import './navbar.css'; // Ensure this is importing correctly
+import './navbar.css';
 
 const CustomNavbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -34,59 +33,48 @@ const CustomNavbar = () => {
 
   return (
     <>
-      <div style={{ backgroundColor: "#033F63", padding: "10px 0", color: "#fff" }}>
+      <div className="top-bar">
         <Container className="d-flex justify-content-between">
           <div>
-            <FaFacebookF style={{ marginRight: "15px" }} />
-            <FaInstagram style={{ marginRight: "15px" }} />
-            <FaYoutube />
+            <FaFacebookF className="social-icon" />
+            <FaInstagram className="social-icon" />
+            <FaYoutube className="social-icon" />
           </div>
           <div>
-            <span className="me-3">
+            <span className="contact-info">
               <FaPhoneAlt /> +91 7208539140   
             </span>
-            <span className="me-3">
+            <span className="contact-info">
               <FaEnvelope /> medibharat@gmail.com
             </span>
           </div>
         </Container>
       </div>
 
-      {/* Main Navbar with sticky class */}
       <Navbar className="navbar-custom" expand="lg">
         <Container>
-          <Navbar.Brand href="/" className="d-flex align-items-center">
+          <Navbar.Brand href="/">
             <img
               src="https://play-lh.googleusercontent.com/62ivGccZTkef_GDhh0bVUwX1hHHDan6KZ0QPljG23cbsr7xovQP8qrBGo6bNngVnFA"
               alt="MediBharat"
-              style={{ height: "70px", marginRight: "10px" }}
+              className="brand-logo"
             />
-            <div>
-              <h5 style={{ marginBottom: "0px", fontWeight: "bold", color: "#D72C16" }}>
-                Medi<span style={{ color: "#00A3E0" }}>Bharat</span>.com
-              </h5>
+            <div className="brand-text">
+              <h5>Medi<span>Bharat</span>.com</h5>
               <small>Happy Medical Journey</small>
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/hospital">
-                <Nav.Link>Hospitals</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/specialist-doctors">
-                <Nav.Link>Our Doctors</Nav.Link>
-              </LinkContainer>
-              <Nav.Link href="#treatment">Treatment</Nav.Link>
-              <Nav.Link href="#our-partners">Our Partners</Nav.Link>
-              <Nav.Link href="#testimonials">Testimonials</Nav.Link>
+              <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
+              <LinkContainer to="/hospital"><Nav.Link>Hospitals</Nav.Link></LinkContainer>
+              <LinkContainer to="/specialist-doctors"><Nav.Link>Our Doctors</Nav.Link></LinkContainer>
+              {/* <Nav.Link href="#treatment">Treatment</Nav.Link> */}
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
               {loggedIn ? (
                 <Dropdown className="ms-3">
-                  <Dropdown.Toggle variant="light" id="dropdown-basic">
+                  <Dropdown.Toggle variant="light">
                     {username}
                   </Dropdown.Toggle>
                   <Dropdown.Menu align="end">
@@ -104,13 +92,7 @@ const CustomNavbar = () => {
         </Container>
       </Navbar>
 
-      {/* Login Popup */}
-      {showLoginPopup && (
-        <Login 
-          onClose={() => setShowLoginPopup(false)} 
-          onLoginSuccess={handleLoginSuccess} 
-        />
-      )}
+      {showLoginPopup && <Login onClose={() => setShowLoginPopup(false)} onLoginSuccess={handleLoginSuccess} />}
     </>
   );
 };

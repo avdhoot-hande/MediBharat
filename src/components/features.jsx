@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaHeart, FaPlane, FaHospital, FaUserMd } from 'react-icons/fa';
-import './features.css'; // Import the CSS file for the component
+import './features.css';
 
 const FeatureCards = () => {
   const features = [
@@ -28,6 +28,7 @@ const FeatureCards = () => {
 
   return (
     <div className="feature-section">
+      <h2 className="feature-title">Why Choose Us?</h2>
       <div className="feature-cards-container">
         {features.map((feature, index) => (
           <div className="feature-card" key={index}>

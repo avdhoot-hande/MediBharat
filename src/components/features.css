@@ -1,57 +1,75 @@
-/* Ensure full-width background and prevent scrollbars */
+/* Feature Section Styles */
 .feature-section {
   width: 100%;
-  background-color: #f1f9ff; /* Light blue background color */
-  padding: 50px 0; /* Adds vertical space */
-  overflow-x: hidden; /* Prevents horizontal scrollbars */
-}
-
-.feature-cards-container {
-  display: flex;
-  justify-content: center; /* Centers the cards horizontally */
-  gap: 20px; /* Adds space between the cards */
-  max-width: 100%; /* Prevent overflow */
-  padding: 0 50px; /* Ensures padding on the sides */
-  overflow-x: hidden;
-  flex-wrap: nowrap; /* Prevents cards from stacking vertically */
-}
-
-.feature-card {
-  flex: 1;
-  min-width: 250px; /* Ensures each card has a reasonable width */
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
+  background-color: #f1f9ff;
+  padding: 60px 20px;
   text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensures no scrolling */
+}
+
+/* Section Title */
+.feature-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #033F63;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Feature Card Container */
+.feature-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive Grid */
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Feature Card */
+.feature-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
-  transform: scale(1.05); /* Adds hover effect */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Enhances shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Feature Icons */
 .feature-card .icon {
-  font-size: 40px;
-  color: #00a3e0; /* Icon color */
-  margin-bottom: 10px;
+  font-size: 50px;
+  color: #00a3e0;
+  margin-bottom: 15px;
 }
 
+/* Feature Titles */
 .feature-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
   color: #033F63;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
+/* Feature Description */
 .feature-card p {
   font-size: 1rem;
   color: #555;
+  line-height: 1.5;
+  padding: 0 10px;
 }
 
+/* Remove Unwanted Horizontal Scroll */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden; /* Prevents any horizontal scrollbar globally */
+  overflow-x: hidden;
 }
