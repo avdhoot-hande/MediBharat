@@ -1,0 +1,46 @@
+/* src/components/adminDashboard.css */
+.admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f4f7fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #033F63;
+  }
+  
+  .admin-dashboard p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  /* Additional admin panel styles */
+  .admin-dashboard .admin-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .admin-dashboard .admin-controls button {
+    background-color: #00a3e0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-dashboard .admin-controls button:hover {
+    background-color: #007bb5;
+  }
+  

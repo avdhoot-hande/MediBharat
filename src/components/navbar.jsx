@@ -11,24 +11,26 @@ const CustomNavbar = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem('username');
-    if (user) {
+    const storedUser = localStorage.getItem('username');
+    if (storedUser) {
       setLoggedIn(true);
-      setUsername(user);
+      setUsername(storedUser);
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('isAdmin');
     setLoggedIn(false);
     setUsername("");
   };
 
-  const handleLoginSuccess = (name) => {
+  // Expect a user object here
+  const handleLoginSuccess = (user) => {
     setLoggedIn(true);
-    setUsername(name);
+    setUsername(user.username);
     setShowLoginPopup(false);
-    localStorage.setItem('username', name);
+    localStorage.setItem('username', user.username);
   };
 
   return (
@@ -70,7 +72,6 @@ const CustomNavbar = () => {
               <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
               <LinkContainer to="/hospital"><Nav.Link>Hospitals</Nav.Link></LinkContainer>
               <LinkContainer to="/doctors"><Nav.Link>Our Doctors</Nav.Link></LinkContainer>
-              {/* <Nav.Link href="#treatment">Treatment</Nav.Link> */}
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
               {loggedIn ? (
                 <Dropdown className="ms-3">
