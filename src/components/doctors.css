@@ -17,7 +17,7 @@
   
   .doctor-card {
     width: 300px; /* Fixed width */
-    height: 400px; /* Fixed height */
+    height: 600px; /* Fixed height */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,8 +30,8 @@
   }
   
   .doctor-image {
-    width: 100%;
-    height: 150px;
+    width: 150px;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
   }

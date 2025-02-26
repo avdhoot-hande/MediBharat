@@ -71,7 +71,7 @@ const CustomNavbar = () => {
             <Nav className="ms-auto">
               <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
               <LinkContainer to="/hospital"><Nav.Link>Hospitals</Nav.Link></LinkContainer>
-              <LinkContainer to="/doctors"><Nav.Link>Our Doctors</Nav.Link></LinkContainer>
+
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
               {loggedIn ? (
                 <Dropdown className="ms-3">

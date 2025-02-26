@@ -4,59 +4,65 @@ import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 const Login = ({ onClose, onLoginSuccess }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
-    // Hard-coded admin credentials:
-    if (username === 'admin' && password === 'admin123') {
-      // Create a consistent user object for admin
-      const adminUser = { username: 'admin', role: 'admin' };
-      localStorage.setItem('username', adminUser.username);
-      localStorage.setItem('isAdmin', 'true');
-      onLoginSuccess(adminUser);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+
+      localStorage.setItem('user', JSON.stringify(data.user));
+      onLoginSuccess(data.user);
       if (onClose) onClose();
-      navigate('/admin');
-      return;
-    }
-    
-    // Regular user login via localStorage
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
-    if (storedUsers[username] && storedUsers[username].password === password) {
-      const userObj = { username, role: 'user' };
-      localStorage.setItem('username', username);
-      onLoginSuccess(userObj);
-      if (onClose) onClose();
-      navigate('/'); // Redirect to homepage (or user dashboard)
-    } else {
-      alert('Invalid credentials');
+      navigate('/');
+
+    } catch (error) {
+      setErrorMessage(error.message);
     }
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
-    if (storedUsers[username]) {
-      alert('User already exists. Please login.');
-    } else {
-      storedUsers[username] = { password };
-      localStorage.setItem('users', JSON.stringify(storedUsers));
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, phone, country })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Signup failed');
+      }
+
       alert('Sign up successful! Please login.');
       setIsSignUp(false);
-    }
-  };
 
-  const handleForgotPassword = () => {
-    alert('Password reset link sent to: ' + email);
-    setForgotPassword(false);
-    setEmail('');
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -65,17 +71,32 @@ const Login = ({ onClose, onLoginSuccess }) => {
         <Modal.Title>{isSignUp ? 'Sign Up' : 'Login'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
         <Form onSubmit={isSignUp ? handleSignUp : handleLogin}>
-          <Form.Group controlId="formBasicUsername">
-            <Form.Label>{isSignUp ? 'Username' : 'Enter Username'}</Form.Label>
+          {isSignUp && (
+            <Form.Group controlId="formBasicName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Form.Group>
+          )}
+
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </Form.Group>
+
           <Form.Group controlId="formBasicPassword" className="mt-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -86,34 +107,38 @@ const Login = ({ onClose, onLoginSuccess }) => {
               required
             />
           </Form.Group>
-          {!isSignUp && (
+
+          {isSignUp && (
             <>
-              {!forgotPassword ? (
-                <div className="text-end mt-2">
-                  <Button variant="link" onClick={() => setForgotPassword(true)} className="p-0">
-                    Forgot Password?
-                  </Button>
-                </div>
-              ) : (
-                <Form.Group controlId="formForgotPassword" className="mt-3">
-                  <Form.Label>Enter your email to reset password</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <Button variant="link" onClick={handleForgotPassword} className="p-0">
-                    Send Reset Link
-                  </Button>
-                </Form.Group>
-              )}
+              <Form.Group controlId="formPhone" className="mt-3">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formCountry" className="mt-3">
+                <Form.Label>Country</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  required
+                />
+              </Form.Group>
             </>
           )}
+
           <Button variant="primary" type="submit" className="mt-4 w-100">
             {isSignUp ? 'Sign Up' : 'Login'}
           </Button>
         </Form>
+
         <div className="mt-3 text-center">
           {isSignUp ? (
             <span>Already have an account? </span>
