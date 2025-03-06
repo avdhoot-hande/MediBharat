@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap styles
 import './hero.css'; // Custom styles

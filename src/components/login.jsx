@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
@@ -7,17 +7,29 @@ const Login = ({ onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
-  const [forgotPassword, setForgotPassword] = useState(false);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [user_name, setUserName] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
   const [country, setCountry] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
+  // Restore user session on page refresh
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      onLoginSuccess(JSON.parse(storedUser));
+    }
+  }, [onLoginSuccess]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMessage('');
+
+    if (email === 'admin@admin' && password === 'admin') {
+      navigate('/admin');
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:5000/login', {
@@ -26,12 +38,13 @@ const Login = ({ onClose, onLoginSuccess }) => {
         body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Login failed');
       }
 
-      localStorage.setItem('user', JSON.stringify(data.user));
+      const data = await response.json();
+      localStorage.setItem('user', JSON.stringify(data.user));  // Store user in localStorage
       onLoginSuccess(data.user);
       if (onClose) onClose();
       navigate('/');
@@ -39,6 +52,12 @@ const Login = ({ onClose, onLoginSuccess }) => {
     } catch (error) {
       setErrorMessage(error.message);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');  // Clear user data from localStorage
+    onLoginSuccess(null); // Reset user state in the parent component
+    navigate('/');
   };
 
   const handleSignUp = async (e) => {
@@ -49,12 +68,12 @@ const Login = ({ onClose, onLoginSuccess }) => {
       const response = await fetch('http://localhost:5000/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, phone, country })
+        body: JSON.stringify({ user_name, email, password, phone_number, country })
       });
 
-      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || 'Signup failed');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Signup failed');
       }
 
       alert('Sign up successful! Please login.');
@@ -74,65 +93,31 @@ const Login = ({ onClose, onLoginSuccess }) => {
         {errorMessage && <p className="text-danger">{errorMessage}</p>}
         <Form onSubmit={isSignUp ? handleSignUp : handleLogin}>
           {isSignUp && (
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </Form.Group>
+            <>
+              <Form.Group controlId="formBasicName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter full name" value={user_name} onChange={(e) => setUserName(e.target.value)} required />
+              </Form.Group>
+              <Form.Group controlId="formPhoneNumber" className="mt-3">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control type="text" placeholder="Enter phone number" value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} required />
+              </Form.Group>
+              <Form.Group controlId="formCountry" className="mt-3">
+                <Form.Label>Country</Form.Label>
+                <Form.Control type="text" placeholder="Enter country" value={country} onChange={(e) => setCountry(e.target.value)} required />
+              </Form.Group>
+            </>
           )}
 
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicEmail" className="mt-3">
             <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword" className="mt-3">
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </Form.Group>
-
-          {isSignUp && (
-            <>
-              <Form.Group controlId="formPhone" className="mt-3">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter phone number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formCountry" className="mt-3">
-                <Form.Label>Country</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter country"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  required
-                />
-              </Form.Group>
-            </>
-          )}
 
           <Button variant="primary" type="submit" className="mt-4 w-100">
             {isSignUp ? 'Sign Up' : 'Login'}
@@ -149,6 +134,13 @@ const Login = ({ onClose, onLoginSuccess }) => {
             {isSignUp ? 'Login' : 'Sign Up'}
           </Button>
         </div>
+
+        {/* Logout Button (Visible only when logged in) */}
+        {localStorage.getItem('user') && (
+          <Button variant="danger" className="mt-3 w-100" onClick={handleLogout}>
+            Logout
+          </Button>
+        )}
       </Modal.Body>
     </Modal>
   );

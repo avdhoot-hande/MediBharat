@@ -1,40 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { LinkContainer } from 'react-router-bootstrap';
 import Login from './login';
 import './navbar.css';
 
-const CustomNavbar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('username');
-    if (storedUser) {
-      setLoggedIn(true);
-      setUsername(storedUser);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('username');
-    localStorage.removeItem('isAdmin');
-    setLoggedIn(false);
-    setUsername("");
-  };
-
-  // Expect a user object here
-  const handleLoginSuccess = (user) => {
-    setLoggedIn(true);
-    setUsername(user.username);
-    setShowLoginPopup(false);
-    localStorage.setItem('username', user.username);
-  };
-
+const CustomNavbar = ({ user, onLogout }) => {
   return (
     <>
+      {/* Top Bar with Social Links */}
       <div className="top-bar">
         <Container className="d-flex justify-content-between">
           <div>
@@ -53,47 +27,53 @@ const CustomNavbar = () => {
         </Container>
       </div>
 
+      {/* Navbar */}
       <Navbar className="navbar-custom" expand="lg">
         <Container>
+          {/* Logo & Branding */}
           <Navbar.Brand href="/">
             <img
-              src="https://play-lh.googleusercontent.com/62ivGccZTkef_GDhh0bVUwX1hHHDan6KZ0QPljG23cbsr7xovQP8qrBGo6bNngVnFA"
+              src="/logo.png"
               alt="MediBharat"
               className="brand-logo"
+              onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }}
             />
             <div className="brand-text">
               <h5>Medi<span>Bharat</span>.com</h5>
               <small>Happy Medical Journey</small>
             </div>
           </Navbar.Brand>
+
+          {/* Toggle Button for Mobile */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
-              <LinkContainer to="/hospital"><Nav.Link>Hospitals</Nav.Link></LinkContainer>
-
+              <LinkContainer to="/doctor"><Nav.Link>Doctor</Nav.Link></LinkContainer>
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
-              {loggedIn ? (
+
+              {/* User Dropdown OR Login Button */}
+              {user ? (
                 <Dropdown className="ms-3">
-                  <Dropdown.Toggle variant="light">
-                    {username}
-                  </Dropdown.Toggle>
+                  <Dropdown.Toggle variant="light">{user.name || "User"}</Dropdown.Toggle>
                   <Dropdown.Menu align="end">
-                    <Dropdown.Item href="#saved-doctors">Saved Doctors</Dropdown.Item>
-                    <Dropdown.Item href="#saved-hospitals">Saved Hospitals</Dropdown.Item>
+                    
+                    {/* ✅ FIXED Navigation Link to Appointments Page */}
+                    <LinkContainer to="/appointments">
+                      <Dropdown.Item>Appointments</Dropdown.Item>
+                    </LinkContainer>
+
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
-                <Button variant="primary" className="ms-3" onClick={() => setShowLoginPopup(true)}>Login</Button>
+                <Button variant="primary" className="ms-3" href="/login">Login</Button>
               )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      {showLoginPopup && <Login onClose={() => setShowLoginPopup(false)} onLoginSuccess={handleLoginSuccess} />}
     </>
   );
 };

@@ -12,13 +12,15 @@ const Footer = () => {
           
           {/* Column 1: Logo and Company Info */}
           <Col md={3} className="mb-3 text-center">
-            <h5>Our Logo</h5>
             <img 
-              src="https://play-lh.googleusercontent.com/62ivGccZTkef_GDhh0bVUwX1hHHDan6KZ0QPljG23cbsr7xovQP8qrBGo6bNngVnFA" // Placeholder for logo
-              alt="Company Logo" 
+              src="/logo.png" // Ensure logo path is correct
+              alt="MediBharat Logo" 
+              className="brand-logo" 
               style={{ width: '175px', height: 'auto' }} 
             />
-            <p className='px-5'>We provide exceptional healthcare services and medical tourism solutions across the globe.</p>
+            <h5>Medi<span style={{ color: '#f8b400' }}>Bharat</span>.com</h5>
+            <p>Happy Medical Journey</p>
+            <p>We provide exceptional healthcare services and medical tourism solutions across the globe.</p>
           </Col>
           
           {/* Column 2: Quick Links */}
@@ -50,8 +52,8 @@ const Footer = () => {
           <Col md={2} className="mb-3">
             <h5>Contact Us</h5>
             <p>Email: medibharat@gmail.com</p>
-            <p>Phone: 91+ 7208539140 </p>
-            <p>Phone: 91+ 7208539140</p>
+            <p>Phone: +91 7208539140</p>
+            <p>Phone: +91 7208539140</p>
           </Col>
 
           {/* Column 5: Location */}
@@ -67,15 +69,15 @@ const Footer = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-            <p className="mt-2">4RCF+GF5 MCT's, Rajiv Gandhi Institute of Tecgnology, Juhu Versova Link Rd, behind HDFC Bank, Gharkul Society, Bharat Nagar, Versova, Andheri West, Mumbai, Maharashtra 400053</p>
+            <p className="mt-2">4RCF+GF5 MCT's, Rajiv Gandhi Institute of Technology, Juhu Versova Link Rd, behind HDFC Bank, Gharkul Society, Bharat Nagar, Versova, Andheri West, Mumbai, Maharashtra 400053</p>
           </Col>
         </Row>
 
         {/* Footer Bottom Line */}
         <Row>
           <hr />
-          <Col className="text-center" style={{ position: 'relative' }}>
-            <p>&copy; {new Date().getFullYear()} Medical. All rights reserved.</p>
+          <Col className="text-center">
+            <p>&copy; {new Date().getFullYear()} MediBharat. All rights reserved.</p>
           </Col>
         </Row>
       </Container>

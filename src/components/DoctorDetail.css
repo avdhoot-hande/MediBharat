@@ -1,0 +1,55 @@
+.doctor-detail-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.doctor-image {
+  width: 200px; 
+  height: 300px; /* Vertical rectangle */
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.doctor-info {
+  flex-grow: 1;
+}
+
+.doctor-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.doctor-specialization {
+  font-size: 18px;
+  color: #666;
+}
+
+.doctor-body {
+  margin-top: 20px;
+}
+
+.doctor-reviews {
+  margin-top: 30px;
+}
+
+.review {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.star-icon {
+  color: gold;
+}

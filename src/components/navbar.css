@@ -90,3 +90,20 @@
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+.favorite-icon {
+  color: #ff4757;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.favorite-icon.favorited {
+  color: red;
+}
