@@ -2,13 +2,11 @@ import React from "react";
 import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { LinkContainer } from 'react-router-bootstrap';
-import Login from './login';
 import './navbar.css';
 
 const CustomNavbar = ({ user, onLogout }) => {
   return (
     <>
-      {/* Top Bar with Social Links */}
       <div className="top-bar">
         <Container className="d-flex justify-content-between">
           <div>
@@ -27,10 +25,8 @@ const CustomNavbar = ({ user, onLogout }) => {
         </Container>
       </div>
 
-      {/* Navbar */}
       <Navbar className="navbar-custom" expand="lg">
         <Container>
-          {/* Logo & Branding */}
           <Navbar.Brand href="/">
             <img
               src="/logo.png"
@@ -44,7 +40,6 @@ const CustomNavbar = ({ user, onLogout }) => {
             </div>
           </Navbar.Brand>
 
-          {/* Toggle Button for Mobile */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -52,19 +47,15 @@ const CustomNavbar = ({ user, onLogout }) => {
               <LinkContainer to="/doctor"><Nav.Link>Doctor</Nav.Link></LinkContainer>
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
 
-              {/* User Dropdown OR Login Button */}
               {user ? (
                 <Dropdown className="ms-3">
                   <Dropdown.Toggle variant="light">{user.name || "User"}</Dropdown.Toggle>
                   <Dropdown.Menu align="end">
-                    
-                    {/* ✅ FIXED Navigation Link to Appointments Page */}
                     <LinkContainer to="/appointments">
                       <Dropdown.Item>Appointments</Dropdown.Item>
                     </LinkContainer>
-
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>
+                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item> {/* ✅ Fix applied */}
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (

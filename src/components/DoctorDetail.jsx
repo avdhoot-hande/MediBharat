@@ -13,6 +13,14 @@ const DoctorDetail = () => {
   const [reviewRating, setReviewRating] = useState(5);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false); // ✅ Added for login popup
+
+  //TO CHECK IF NOT LOGGINED
+  const handleReviewClick = () => {
+    if (!user) {
+      setShowLoginPrompt(true);
+    }
+  };
 
   // Appointment State
   const [showModal, setShowModal] = useState(false);
@@ -38,23 +46,23 @@ const DoctorDetail = () => {
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     if (!user) {
-      setError("Please log in to write a review.");
+      setShowLoginPrompt(true); // ✅ Show login prompt instead of just setting an error
       return;
     }
     if (!reviewText) return;
-    
+
     axios.post(`http://localhost:5000/doctors/${id}/reviews`, {
       user_id: user.user_id,
       review_description: reviewText,
       review_points: reviewRating
     })
-    .then(response => {
-      setReviews([{ r_id: response.data.r_id, user_name: user.user_name, review_description: reviewText, review_points: reviewRating, review_date: new Date().toISOString(), user_id: user.user_id }, ...reviews]);
-      setReviewText('');
-      setReviewRating(5);
-      setError(null);
-    })
-    .catch(error => console.error("Error adding review:", error));
+      .then(response => {
+        setReviews([{ r_id: response.data.r_id, user_name: user.user_name, review_description: reviewText, review_points: reviewRating, review_date: new Date().toISOString(), user_id: user.user_id }, ...reviews]);
+        setReviewText('');
+        setReviewRating(5);
+        setError(null);
+      })
+      .catch(error => console.error("Error adding review:", error));
   };
 
   // Delete a review
@@ -66,32 +74,6 @@ const DoctorDetail = () => {
       .catch(error => console.error("Error deleting review:", error));
   };
 
-  // Submit Appointment Booking
-  const handleAppointmentSubmit = async () => {
-    if (!user) {
-      alert('Please log in to book an appointment');
-      return;
-    }
-
-    try {
-      const response = await axios.post('http://localhost:5000/appointments', {
-        user_id: user.user_id,
-        doctor_id: id,
-        date,
-        time,
-        reason
-      });
-
-      if (response.status === 201) {
-        alert('Appointment booked successfully');
-        setShowModal(false);
-      }
-    } catch (error) {
-      console.error("Error booking appointment:", error);
-      alert('Failed to book appointment');
-    }
-  };
-
   if (loading) return <p>Loading doctor details...</p>;
   if (!doctor) return <p>Doctor not found.</p>;
 
@@ -99,11 +81,11 @@ const DoctorDetail = () => {
     <div className="doctor-detail-container">
       {/* Doctor Details Section */}
       <div className="doctor-header">
-        <img 
-          src={doctor.img} 
-          alt={doctor.name} 
+        <img
+          src={doctor.img}
+          alt={doctor.name}
           className="doctor-image"
-          onError={(e) => { e.target.src = "https://via.placeholder.com/200x300"; }} 
+          onError={(e) => { e.target.src = "https://via.placeholder.com/200x300"; }}
         />
         <div className="doctor-info">
           <h2 className="doctor-name">{doctor.name}</h2>
@@ -141,27 +123,43 @@ const DoctorDetail = () => {
       {/* Add a Review Section */}
       <div className="mt-4">
         <h3>Add a Review</h3>
-        {error && <p className="text-danger">{error}</p>}
         <form onSubmit={handleReviewSubmit}>
-          <textarea 
-            value={reviewText} 
-            onChange={(e) => setReviewText(e.target.value)} 
+          <textarea
+            value={reviewText}
+            onClick={handleReviewClick}  // ✅ Add this line to trigger login popup when clicked
+            onChange={(e) => setReviewText(e.target.value)}
             required
-            placeholder="Write your review here..." 
+            placeholder="Write your review here..."
             className="form-control mb-2"
             disabled={!user}
           />
-          <select 
-            value={reviewRating} 
-            onChange={(e) => setReviewRating(Number(e.target.value))} 
+
+          <select
+            value={reviewRating}
+            onClick={handleReviewClick} 
+            onChange={(e) => setReviewRating(Number(e.target.value))}
             className="form-control mb-2"
             disabled={!user}
           >
             {[1, 2, 3, 4, 5].map(num => <option key={num} value={num}>{num} Stars</option>)}
           </select>
-          <button type="submit" className="btn btn-primary" disabled={!user}>Submit Review</button>
+          <button type="submit" className="btn btn-primary">Submit Review</button>
         </form>
       </div>
+
+      {/* Login Required Modal ✅ */}
+      <Modal show={showLoginPrompt} onHide={() => setShowLoginPrompt(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login Required</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>You must be logged in to write a review.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowLoginPrompt(false)}>Close</Button>
+          <Button variant="primary" href="/login">Login</Button>
+        </Modal.Footer>
+      </Modal>
 
       {/* Appointment Booking Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -186,7 +184,7 @@ const DoctorDetail = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-          <Button variant="primary" onClick={handleAppointmentSubmit}>Book</Button>
+          <Button variant="primary" onClick={() => setShowModal(false)}>Book</Button>
         </Modal.Footer>
       </Modal>
     </div>

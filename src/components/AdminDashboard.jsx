@@ -4,7 +4,10 @@ import axios from 'axios';
 const AdminDashboard = () => {
     const [doctors, setDoctors] = useState([]);
     const [appointments, setAppointments] = useState([]);
-    const [newDoctor, setNewDoctor] = useState({ name: '', hospital_name: '', specialization: '', treatment: '', img: '', city: '' });
+    const [newDoctor, setNewDoctor] = useState({
+        name: '', hospital_name: '', years: '', certification: '', specialization: '', 
+        treatment: '', img: '', reviews: '', description: '', city: '', location: '', price: ''
+    });
 
     useEffect(() => {
         fetchDoctors();
@@ -32,11 +35,15 @@ const AdminDashboard = () => {
     };
 
     // Add a doctor
-    const addDoctor = async () => {
+    const addDoctor = async (e) => {
+        e.preventDefault();
         try {
             await axios.post('http://localhost:5000/doctors', newDoctor);
             fetchDoctors();
-            setNewDoctor({ name: '', hospital_name: '', specialization: '', treatment: '', img: '', city: '' });
+            setNewDoctor({
+                name: '', hospital_name: '', years: '', certification: '', specialization: '', 
+                treatment: '', img: '', reviews: '', description: '', city: '', location: '', price: ''
+            });
         } catch (error) {
             console.error("Error adding doctor:", error);
         }
@@ -65,6 +72,25 @@ const AdminDashboard = () => {
     return (
         <div className="container">
             <h2 className="mt-4 text-primary">Admin Dashboard</h2>
+            
+            {/* Add Doctor Form */}
+            <div className="mt-4">
+                <h3>Add a Doctor</h3>
+                <form onSubmit={addDoctor}>
+                    {Object.keys(newDoctor).map((key) => (
+                        <div key={key} className="form-group">
+                            <input
+                                type="text"
+                                className="form-control mb-2"
+                                placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
+                                value={newDoctor[key]}
+                                onChange={(e) => setNewDoctor({ ...newDoctor, [key]: e.target.value })}
+                            />
+                        </div>
+                    ))}
+                    <button type="submit" className="btn btn-success">Add Doctor</button>
+                </form>
+            </div>
 
             {/* Manage Doctors */}
             <div className="mt-4">
@@ -72,16 +98,22 @@ const AdminDashboard = () => {
                 <table className="table">
                     <thead>
                         <tr>
-                            {doctors.length > 0 && Object.keys(doctors[0]).map((col) => (
-                                <th key={col}>{col}</th>
-                            ))}
+                            <th>ID</th><th>Name</th><th>Hospital</th><th>Years</th><th>Certification</th>
+                            <th>Specialization</th><th>Treatment</th><th>Image</th><th>Reviews</th>
+                            <th>Description</th><th>City</th><th>Location</th><th>Price</th><th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {doctors.map((doctor) => (
                             <tr key={doctor.d_id}>
-                                {Object.values(doctor).map((value, index) => (
-                                    <td key={index}>{value}</td>
+                                {Object.entries(doctor).map(([key, value], index) => (
+                                    <td key={index}>
+                                        {key === 'img' && typeof value === 'string' && value.startsWith('http') ? (
+                                            <img src={value} alt={doctor.name} width="50" />
+                                        ) : (
+                                            value
+                                        )}
+                                    </td>
                                 ))}
                                 <td>
                                     <button className="btn btn-danger" onClick={() => deleteDoctor(doctor.d_id)}>Delete</button>
@@ -111,7 +143,11 @@ const AdminDashboard = () => {
                                     <td key={index}>{value}</td>
                                 ))}
                                 <td>
-                                    <select onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)} defaultValue={appointment.status}>
+                                    <select 
+                                        className="form-control"
+                                        onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)} 
+                                        defaultValue={appointment.status}
+                                    >
                                         <option value="On Hold">On Hold</option>
                                         <option value="Confirmed">Confirmed</option>
                                         <option value="Completed">Completed</option>

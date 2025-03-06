@@ -12,16 +12,17 @@ import Testimonials from './components/testimonial';
 import Login from './components/login';
 import DoctorDetail from './components/DoctorDetail';
 import AdminDashboard from './components/AdminDashboard';
-import Appointments from './components/Appointments';  // New import
+import Appointments from './components/Appointments';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')) || null);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    const handleStorageChange = () => {
+      setUser(JSON.parse(localStorage.getItem('user')));
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const handleLoginSuccess = (userData) => {
@@ -32,6 +33,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
+    window.location.reload(); // ✅ Force full UI refresh
   };
 
   return (
@@ -53,7 +55,7 @@ function App() {
             <Route path="/doctor/:id" element={<DoctorDetail />} />
             <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/appointments" element={<Appointments />} />  
+            <Route path="/appointments" element={<Appointments />} />
           </Routes>
         </main>
         <Footer />
