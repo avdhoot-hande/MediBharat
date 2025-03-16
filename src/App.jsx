@@ -16,6 +16,7 @@ import Appointments from './components/Appointments';
 
 function App() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')) || null);
+  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -28,18 +29,19 @@ function App() {
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
+    setShowLogin(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
-    window.location.reload(); // ✅ Force full UI refresh
+    window.location.reload();
   };
 
   return (
     <AuthProvider>
       <Router>
-        <Navbar user={user} onLogout={handleLogout} />
+        <Navbar user={user} onLogout={handleLogout} onLoginClick={() => setShowLogin(true)} />
         <main>
           <Routes>
             <Route path="/" element={
@@ -53,12 +55,19 @@ function App() {
             } />
             <Route path="/doctor" element={<Doctor />} />
             <Route path="/doctor/:id" element={<DoctorDetail />} />
-            <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/appointments" element={<Appointments />} />
           </Routes>
         </main>
         <Footer />
+
+        {/* Blurred Background + Login Modal */}
+        {showLogin && (
+          <>
+            <div className="login-backdrop" />
+            <Login onClose={() => setShowLogin(false)} onLoginSuccess={handleLoginSuccess} />
+          </>
+        )}
       </Router>
     </AuthProvider>
   );

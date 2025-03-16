@@ -32,3 +32,28 @@
     background-color: #00A3E0; /* Change color on hover */
   }
   
+  /* login.css */
+.custom-login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px); /* subtle blur */
+  z-index: 1040; /* higher than normal content */
+}
+
+.login-modal {
+  z-index: 1050;
+}
+
+.login-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1049;
+}

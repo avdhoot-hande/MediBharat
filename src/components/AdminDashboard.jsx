@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 const AdminDashboard = () => {
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
     const [appointments, setAppointments] = useState([]);
     const [newDoctor, setNewDoctor] = useState({
@@ -9,15 +11,18 @@ const AdminDashboard = () => {
         treatment: '', img: '', reviews: '', description: '', city: '', location: '', price: ''
     });
 
+    const [statusUpdateMsg, setStatusUpdateMsg] = useState(''); // ✅ feedback message
+    const [refresh, setRefresh] = useState(false); // ✅ to force re-fetch
+
     useEffect(() => {
         fetchDoctors();
         fetchAppointments();
-    }, []);
+    }, [refresh]); // ✅ add refresh dependency
 
     // Fetch all doctors
     const fetchDoctors = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/doctors');
+            const response = await axios.get(`${BACKEND_URL}/doctors`);
             setDoctors(response.data);
         } catch (error) {
             console.error("Error fetching doctors:", error);
@@ -27,7 +32,7 @@ const AdminDashboard = () => {
     // Fetch all appointments
     const fetchAppointments = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/appointments');
+            const response = await axios.get(`${BACKEND_URL}/appointments`);
             setAppointments(response.data);
         } catch (error) {
             console.error("Error fetching appointments:", error);
@@ -38,7 +43,7 @@ const AdminDashboard = () => {
     const addDoctor = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/doctors', newDoctor);
+            await axios.post(`${BACKEND_URL}/doctors`, newDoctor);
             fetchDoctors();
             setNewDoctor({
                 name: '', hospital_name: '', years: '', certification: '', specialization: '', 
@@ -52,20 +57,28 @@ const AdminDashboard = () => {
     // Delete a doctor
     const deleteDoctor = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/doctors/${id}`);
+            await axios.delete(`${BACKEND_URL}/doctors/${id}`);
             fetchDoctors();
         } catch (error) {
             console.error("Error deleting doctor:", error);
         }
     };
 
-    // Update appointment status
+    // ✅ Update appointment status
     const updateAppointmentStatus = async (id, newStatus) => {
         try {
-            await axios.put(`http://localhost:5000/appointments/${id}/status`, { status: newStatus });
-            fetchAppointments();
+            const response = await axios.put(`${BACKEND_URL}/appointments/${id}/status`, {
+                status: newStatus
+            });
+
+            if (response.status === 200) {
+                setStatusUpdateMsg(`Appointment ${id} updated to ${newStatus}`);
+                setRefresh(prev => !prev); // ✅ force re-fetch of appointments
+                setTimeout(() => setStatusUpdateMsg(''), 3000);
+            }
         } catch (error) {
             console.error("Error updating status:", error);
+            setStatusUpdateMsg("Error updating status.");
         }
     };
 
@@ -127,6 +140,12 @@ const AdminDashboard = () => {
             {/* Manage Appointments */}
             <div className="mt-4">
                 <h3>Appointments Table</h3>
+                
+                {/* ✅ Status update message */}
+                {statusUpdateMsg && (
+                    <div className="alert alert-info">{statusUpdateMsg}</div>
+                )}
+
                 <table className="table">
                     <thead>
                         <tr>
@@ -137,25 +156,37 @@ const AdminDashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map((appointment) => (
-                            <tr key={appointment.id}>
-                                {Object.values(appointment).map((value, index) => (
-                                    <td key={index}>{value}</td>
-                                ))}
-                                <td>
-                                    <select 
-                                        className="form-control"
-                                        onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)} 
-                                        defaultValue={appointment.status}
-                                    >
-                                        <option value="On Hold">On Hold</option>
-                                        <option value="Confirmed">Confirmed</option>
-                                        <option value="Completed">Completed</option>
-                                        <option value="Cancelled">Cancelled</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        ))}
+                        {appointments.map((appointment) => {
+                            // ✅ Debug log for status
+                            console.log("Status of appointment ID", appointment.id, "is:", appointment.status);
+
+                            // ✅ Normalize and fix casing of status
+                            const normalizedStatus = (appointment.status || "").toLowerCase();
+                            const validStatuses = ["on hold", "confirmed", "completed", "cancelled"];
+                            const currentStatus = validStatuses.includes(normalizedStatus)
+                                ? normalizedStatus.charAt(0).toUpperCase() + normalizedStatus.slice(1)
+                                : "On Hold";
+
+                            return (
+                                <tr key={appointment.id}>
+                                    {Object.values(appointment).map((value, index) => (
+                                        <td key={index}>{value}</td>
+                                    ))}
+                                    <td>
+                                        <select 
+                                            className="form-control"
+                                            onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)} 
+                                            value={currentStatus}
+                                        >
+                                            <option value="On Hold">On Hold</option>
+                                            <option value="Confirmed">Confirmed</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

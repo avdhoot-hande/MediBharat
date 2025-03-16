@@ -9,12 +9,23 @@ import 'slick-carousel/slick/slick-theme.css';
 const SpecialistDoctors = () => {
   const [doctors, setDoctors] = useState([]);
   const navigate = useNavigate(); // Hook for navigation
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/doctors')
-      .then(response => setDoctors(response.data))
-      .catch(error => console.error("Error fetching doctors:", error));
-  }, []);
+    axios.get(`${BACKEND_URL}/doctors`)
+      .then(response => {
+        if (Array.isArray(response.data)) {
+          setDoctors(response.data);
+        } else {
+          console.error("Unexpected response:", response.data);
+          setDoctors([]); // fallback
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching doctors:", error);
+        setDoctors([]); // fallback
+      });
+  }, [BACKEND_URL]);
 
   const settings = {
     infinite: true,

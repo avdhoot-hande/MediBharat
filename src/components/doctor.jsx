@@ -8,6 +8,7 @@ import { FaHeart } from 'react-icons/fa';
 import { IoCloseCircle } from 'react-icons/io5';
 import './doctor.css';
 
+
 const Doctor = () => {
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
@@ -16,9 +17,14 @@ const Doctor = () => {
   const [priceRange, setPriceRange] = useState([0, 9999999]);
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+  console.log("Calling:", `${BACKEND_URL}/doctors`);
+  console.log("Env value:", import.meta.env.VITE_BACKEND_URL);
+
 
   useEffect(() => {
-    axios.get('http://localhost:5000/doctors')
+    axios.get(`${BACKEND_URL}/doctors`)
       .then(response => {
         if (Array.isArray(response.data)) {
           setDoctors(response.data);
@@ -81,7 +87,7 @@ const Doctor = () => {
           <Slider 
             range 
             min={0} 
-            max={9999999} 
+            max={999999} 
             step={1000} 
             value={priceRange} 
             onChange={setPriceRange} 

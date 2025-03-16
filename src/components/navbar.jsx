@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope } from "rea
 import { LinkContainer } from 'react-router-bootstrap';
 import './navbar.css';
 
-const CustomNavbar = ({ user, onLogout }) => {
+const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
   return (
     <>
       <div className="top-bar">
@@ -16,7 +16,7 @@ const CustomNavbar = ({ user, onLogout }) => {
           </div>
           <div>
             <span className="contact-info">
-              <FaPhoneAlt /> +91 7208539140   
+              <FaPhoneAlt /> +91 7208539140
             </span>
             <span className="contact-info">
               <FaEnvelope /> medibharat@gmail.com
@@ -25,19 +25,15 @@ const CustomNavbar = ({ user, onLogout }) => {
         </Container>
       </div>
 
-      <Navbar className="navbar-custom" expand="lg">
+      <Navbar className="navbar-custom py-0" expand="lg">
         <Container>
           <Navbar.Brand href="/">
             <img
-              src="/logo.png"
+              src="/logo.jpg"
               alt="MediBharat"
               className="brand-logo"
               onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }}
             />
-            <div className="brand-text">
-              <h5>Medi<span>Bharat</span>.com</h5>
-              <small>Happy Medical Journey</small>
-            </div>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -55,11 +51,13 @@ const CustomNavbar = ({ user, onLogout }) => {
                       <Dropdown.Item>Appointments</Dropdown.Item>
                     </LinkContainer>
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item> {/* ✅ Fix applied */}
+                    <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
-                <Button variant="primary" className="ms-3" href="/login">Login</Button>
+                <Button variant="primary" className="ms-3" onClick={onLoginClick}>
+                  Login
+                </Button>
               )}
             </Nav>
           </Navbar.Collapse>
