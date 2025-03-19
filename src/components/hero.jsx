@@ -26,7 +26,7 @@ const HeroSection = () => {
               Have a Happy Journey with us.
             </p>
             <Link
-              to="/appoinment"
+              to="/doctor"
               className="btn text-white btn-lg"
               style={{ backgroundColor: '#e12454' }}
             >

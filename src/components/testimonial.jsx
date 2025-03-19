@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './review.css'; // Import the new CSS file
+import './testimonial.css'; // Import the new CSS file
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
