@@ -19,8 +19,7 @@ const Doctor = () => {
   const navigate = useNavigate();
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-  console.log("Calling:", `${BACKEND_URL}/doctors`);
-  console.log("Env value:", import.meta.env.VITE_BACKEND_URL);
+  
 
 
   useEffect(() => {

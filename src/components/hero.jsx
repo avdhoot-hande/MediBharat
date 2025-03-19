@@ -1,37 +1,109 @@
-  import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap styles
-import './hero.css'; // Custom styles
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaHeart, FaPlane, FaHospital, FaUserMd } from 'react-icons/fa';
 
 const HeroSection = () => {
-  const images = [
-    {
-      src: 'https://imgs.search.brave.com/uN73aOkoSqfdzzlpbQuXndlXw8oOR_nXg_AhUqFecgg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc2/LzM2MF9GXzk1NjE5/NzY3OV8wZHg2ak9T/YjNpQVJUS254eVE4/VWdKdWMyejRJSUpH/NS5qcGc',
-      alt: 'Medical Tourism 1',
-      caption: 'Welcome to MediBharat',
-      description: 'Your trusted medical tourism partner.',
-    },
-    {
-      src: 'https://imgs.search.brave.com/Fz2v4lurYH0otyVZ4sO90GikeGqRUPQXU1xWN52L_1Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA5LzU2LzE5Lzc3/LzM2MF9GXzk1NjE5/Nzc0MF9vZE5EQnlw/bUFRQmo3VXlDdmdB/TEVEQ1o0S2JZWTNW/Zi5qcGc',
-      alt: 'Medical Tourism 2',
-      caption: 'Seamless Healthcare Access',
-      description: 'Connecting you with world-class hospitals.',
-    }
-  ];
-
   return (
-    <Carousel interval={3000} controls={true} indicators={true} pause="hover">
-      {images.map((image, index) => (
-        <Carousel.Item key={index}>
-          <img className="d-block w-100 hero-image" src={image.src} alt={image.alt} />
-          <Carousel.Caption className="hero-caption">
-            <h3>{image.caption}</h3>
-            <p>{image.description}</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <section
+      className="relative bg-cover bg-center min-h-[550px] flex  pt-5 md:pt-10"
+      style={{
+        backgroundImage: "url('slider-bg-1.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '550px',
+      }}
+    >
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 mx-2  text-md-start">
+            <div className="mb-3" style={{ width: '40px', height: '4px', backgroundColor: '#e12454' }}></div>
+            <span className="text-uppercase text-muted small d-block mb-2">Total Health care solution</span>
+            <h1 className="display-5 fw-bold mb-3" style={{ color: '#004085' }}>Your most trusted health partner</h1>
+            <p className="text-muted mb-4">
+              Your one stop platform to book doctors .
+            </p>
+            <p className="text-muted mb-4">
+              Have a Happy Journey with us.
+            </p>
+            <Link
+              to="/appoinment"
+              className="btn text-white btn-lg"
+              style={{ backgroundColor: '#e12454' }}
+            >
+              Make appointment <i className="icofont-simple-right ms-2"></i>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default HeroSection;
+const FeatureBox = ({ icon, title, subtitle, description, children }) => (
+  <div className="bg-white rounded shadow p-4 text-center text-md-start h-100">
+    <div className="mb-3" style={{ color: '#004085', fontSize: '2rem' }}>
+      <i className="d-flex ">{icon}</i>
+    </div>
+    <div className="text-muted small fw-semibold mb-1">{subtitle}</div>
+    <h5 className="fw-bold mb-3" style={{ color: '#004085' }}>{title}</h5>
+    {description && <p className="text-muted small mb-3">{description}</p>}
+    {children}
+  </div>
+);
+
+const FeaturesSection = () => {
+  return (
+    <section className="position-relative" style={{ marginTop: '-100px', zIndex: '10' }}>
+      <div className="container">
+        <div className="row g-4">
+          <div className="col-md-4">
+            <FeatureBox
+              icon = { <FaHeart /> }
+              title="Personalized Care"
+              subtitle="24 Hours Service"
+              description="Get the best personalized medical care from top specialists."
+            >
+              {/* <Link
+                to="/appoinment"
+                className="btn btn-sm text-white"
+                style={{ backgroundColor: '#004085' }}
+              >
+                Make an appointment
+              </Link> */}
+            </FeatureBox>
+          </div>
+
+          <div className="col-md-4">
+            <FeatureBox
+              icon={<FaHospital />}
+              title="Top Hospitals"
+              subtitle="World class cerfied hospital"
+              description="Receive treatment from internationally recognized hospitals."
+            >
+            </FeatureBox>
+          </div>
+
+          <div className="col-md-4">
+            <FeatureBox
+              icon={<FaUserMd/>}
+              title="Expert Doctors"
+              subtitle="Specialist "
+              description="Consult with experienced and trusted medical professionals."
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HomePage = () => {
+  return (
+    <div>
+      <HeroSection />
+      <FeaturesSection />
+    </div>
+  );
+};
+
+export default HomePage;

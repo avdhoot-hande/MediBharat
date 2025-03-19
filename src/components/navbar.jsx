@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaPhoneAlt, FaEnvelope } from "rea
 import { LinkContainer } from 'react-router-bootstrap';
 import './navbar.css';
 
+
 const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
   return (
     <>
@@ -41,7 +42,7 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
             <Nav className="ms-auto">
               <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
               <LinkContainer to="/doctor"><Nav.Link>Doctor</Nav.Link></LinkContainer>
-              <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+              <Nav.Link href="/about">About Us</Nav.Link>
 
               {user ? (
                 <Dropdown className="ms-3">

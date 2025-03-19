@@ -1,13 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './calltoaction.css';
 
 const CallToAction = () => {
   return (
-    <div className="cta-section">
-      <h2>Ready to Start Your Medical Journey?</h2>
-      <p>Get in touch with us today for personalized medical care!</p>
-      <button className="cta-button">Contact Us</button>
-    </div>
+    <section className="cta-wrapper">
+      <div className="cta-container">
+        <h2 className="cta-heading">Want to know about us?</h2>
+        <p className="cta-text">Know us better and get better with us!</p>
+        <Link to="/about">
+          <button className="cta-button">About Us</button>
+        </Link>
+      </div>
+    </section>
   );
 };
 
