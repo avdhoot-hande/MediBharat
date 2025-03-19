@@ -51,7 +51,6 @@ function App() {
                 <>
                   <Hero />
                   <SpecialistDoctors />
-                  <Testimonials />
                   <CallToAction />
                 </>
               }
