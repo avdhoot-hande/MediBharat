@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './testimonial.css';
+import './review.css'; // Import the new CSS file
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reviews`);
-        setReviews(response.data);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-      }
-    };
-
-    fetchReviews();
+    axios.get('http://localhost:5000/reviews/5-star')
+      .then(res => setReviews(res.data))
+      .catch(err => console.error('Error fetching reviews:', err));
   }, []);
 
   return (
