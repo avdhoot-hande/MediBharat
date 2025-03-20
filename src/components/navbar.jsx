@@ -42,7 +42,8 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
             <Nav className="ms-auto">
               <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
               <LinkContainer to="/doctor"><Nav.Link>Doctor</Nav.Link></LinkContainer>
-              <Nav.Link href="/about">About Us</Nav.Link>
+               <LinkContainer to="/about"><Nav.Link>About us</Nav.Link></LinkContainer>
+              
 
               {user ? (
                 <Dropdown className="ms-3">
