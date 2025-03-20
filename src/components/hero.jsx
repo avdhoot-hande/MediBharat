@@ -18,13 +18,11 @@ const HeroSection = () => {
           <div className="col-md-8 mx-2  text-md-start">
             <div className="mb-3" style={{ width: '40px', height: '4px', backgroundColor: '#e12454' }}></div>
             <span className="text-uppercase text-muted small d-block mb-2">Total Health care solution</span>
-            <h1 className="display-5 fw-bold mb-3" style={{ color: '#004085' }}>Your most trusted health partner</h1>
+            <h1 className="display-5 fw-bold mb-3" style={{ color: '#004085' }}>Healthcare Beyond Borders</h1>
             <p className="text-muted mb-4">
-              Your one stop platform to book doctors .
+              Receive top-quality medical care while exploring new destinations. Affordable treatments, expert specialists, and personalized support—because your well-being knows no boundaries.
             </p>
-            <p className="text-muted mb-4">
-              Have a Happy Journey with us.
-            </p>
+            
             <Link
               to="/doctor"
               className="btn text-white btn-lg"
