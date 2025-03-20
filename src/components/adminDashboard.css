@@ -1,46 +1,85 @@
-/* src/components/adminDashboard.css */
-.admin-dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-    background-color: #f4f7fc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-dashboard h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #033F63;
-  }
-  
-  .admin-dashboard p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #555;
-  }
-  
-  /* Additional admin panel styles */
-  .admin-dashboard .admin-controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .admin-dashboard .admin-controls button {
-    background-color: #00a3e0;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .admin-dashboard .admin-controls button:hover {
-    background-color: #007bb5;
-  }
-  
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #033f63;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background-color: #005f8f;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f7f9fc;
+}
+
+.main-content h2 {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.alert {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #cce5ff;
+  color: #004085;
+  border-radius: 4px;
+}
