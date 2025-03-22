@@ -28,9 +28,12 @@ const Login = ({ onClose, onLoginSuccess }) => {
     setErrorMessage('');
 
     if (email === 'admin@admin' && password === 'admin') {
+      if (onClose) onClose(); 
       navigate('/admin');
       return;
     }
+    
+    
 
     try {
       const response = await fetch(`${BACKEND_URL}/login`, {
