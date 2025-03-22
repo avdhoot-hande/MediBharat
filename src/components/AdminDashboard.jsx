@@ -104,12 +104,20 @@ const AdminDashboard = () => {
 
   const deleteDoctor = async (id) => {
     try {
-      await axios.delete(`${BACKEND_URL}/doctors/${id}`);
+      // First delete all appointments with this doctor
+      await axios.delete(`${BACKEND_URL}/appointments/doctor/${id}`);
+      
+      // Then delete the doctor
+      const res = await axios.delete(`${BACKEND_URL}/doctors/${id}`);
+      console.log('Doctor deleted:', res.data);
       fetchDoctors();
     } catch (error) {
-      console.error("Error deleting doctor:", error);
+      console.error('Error deleting doctor:', error.response?.data || error.message);
+      alert('Failed to delete doctor. See console for details.');
     }
   };
+  
+  
 
   const updateAppointmentStatus = async (id, newStatus) => {
     try {
