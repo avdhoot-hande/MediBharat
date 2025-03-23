@@ -5,37 +5,37 @@ import "./about.css";
 const About = () => {
   return (
     <section id="about-us" className="about-section">
-      {/* About Us Section */}
+    {/* About Us Section */}
+    <section id="about" className="about-info-section">
+      <div className="about-box">
+        <h2 className="about-heading">About Us</h2>
+        <div className="about-content">
+          <div className="about-image">
+            <img
+              src="https://www.japjitravel.com/blog/wp-content/uploads/2016/11/medical-tourism-e1478168667894.jpg"
+              alt="About MediBharat"
+            />
+          </div>
+          <div className="about-text">
+            <p>
+              <strong>MediBharat</strong> is a trusted medical tourism platform connecting international
+              patients with top-tier hospitals in India. We provide end-to-end assistance,
+              ensuring seamless and affordable medical care.
+            </p>
+            <ul>
+              <li><strong>Accredited Hospitals:</strong> We partner with top-rated medical institutions.</li>
+              <li><strong>Expert Specialists:</strong> Access to the best doctors across various fields.</li>
+              <li><strong>Personalized Support:</strong> From consultation to recovery, we assist at every step.</li>
+              <li><strong>Affordable Healthcare:</strong> High-quality treatments at a fraction of global costs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
       
 
 
-<section id="mission" className="mission-section">
-        <div className="mission-box">
-        <h2 className="mission-heading">About Us</h2>
-    <div className="mission-content reverse-layout"> {/* Reverse layout: text left, image right */}
-      <div className="mission-text">
-        <p>
-          MediBharat is a trusted medical tourism platform connecting international
-          patients with top-tier hospitals in India. We provide end-to-end assistance,
-          ensuring seamless and affordable medical care.
-        </p>
-        <ul>
-          <li><strong>Accredited Hospitals:</strong> We partner with top-rated medical institutions.</li>
-          <li><strong>Expert Specialists:</strong> Access to the best doctors across various fields.</li>
-          <li><strong>Personalized Support:</strong> From consultation to recovery, we assist at every step.</li>
-          <li><strong>Affordable Healthcare:</strong> High-quality treatments at a fraction of global costs.</li>
-        </ul>
-        <p>Let us help you access top-notch healthcare with comfort and confidence!</p>
-      </div>
-      <div className="mission-image">
-        <img
-          src="https://www.japjitravel.com/blog/wp-content/uploads/2016/11/medical-tourism-e1478168667894.jpg"
-          alt="Medical tourism"
-        />
-      </div>
-    </div>
-        </div>
-      </section>
+
 
 
 
@@ -94,9 +94,7 @@ const About = () => {
             />
             <h3>Our Expertise</h3>
             <p>
-              <strong>World-Class Healthcare Network –</strong> Partnering with internationally accredited
-              hospitals and top-tier medical professionals to ensure advanced treatments with the highest
-              standards of care.
+              <strong>World-Class Healthcare Network –</strong>  Partnering with India's top hospitals and professionals to provide advanced treatments with the highest standards of care
             </p>
           </div>
 
@@ -139,7 +137,13 @@ const About = () => {
           <div className="contact-box">
             <div className="contact-header">Write to Us</div>
             <div className="contact-content">
-              <a href="mailto:info@indicure.com">MediBharat@gmail.com</a>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=MediBharat5719@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                MediBharat@gmail.com
+              </a>
             </div>
           </div>
 
@@ -150,24 +154,19 @@ const About = () => {
             </div>
           </div>
 
-          <div className="contact-box">
-            <div className="contact-header">Skype</div>
-            <div className="contact-content">
-              <a href="https://medibharat.com">MediBharat</a>
-
-            </div>
-          </div>
+          
+          
 
           <div className="contact-box">
-            <div className="contact-header">Chat with Us</div>
-            <div className="contact-content contact-icons">
-              <a href="#"><FaFacebook /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaPinterest /></a>
-              <a href="#"><FaYoutube /></a>
-            </div>
-          </div>
-        </div>
+      <div className="contact-header">Chat with Us</div>
+      <div className="contact-content contact-icons">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer"><FaPinterest /></a>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+      </div>
+    </div>
+    </div>
       </section>
     </section>
   );

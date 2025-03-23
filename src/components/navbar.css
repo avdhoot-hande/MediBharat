@@ -117,3 +117,75 @@
   background-color: #fff; /* ensure background isn't transparent */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
+
+/* -------- Navbar Links General Styling -------- */
+.navbar-custom .nav-link,
+.navbar-custom .dropdown-toggle {
+  color: #333;
+  font-weight: 500;
+  margin-right: 15px;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove underline from dropdown toggle (arrow-style) */
+.navbar-custom .dropdown-toggle::after {
+  content: none !important;
+}
+
+/* -------- Hover underline for non-dropdown nav links -------- */
+.navbar-custom .nav-link:not(.dropdown-toggle)::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #004085;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-custom .nav-link:not(.dropdown-toggle):hover::after {
+  width: 100%;
+}
+
+/* -------- Active Top-Level Nav Links -------- */
+.navbar-custom .nav-link.active,
+.navbar-custom .dropdown-toggle.active {
+  color: rgb(92, 100, 172) !important;
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* -------- Dropdown Item Styling -------- */
+.dropdown-menu .dropdown-item {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Highlight active dropdown item */
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+  background-color: #e6f0ff !important;
+  color: #004085 !important;
+  font-weight: bold;
+}
+
+/* Optional: Add hover color for better UX */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f0f0f0;
+  color: #004085;
+}
+
+/* Remove focus outline */
+.navbar-custom .nav-link:focus,
+.navbar-custom .dropdown-toggle:focus,
+.dropdown-item:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

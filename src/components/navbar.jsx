@@ -7,6 +7,8 @@ import './navbar.css';
 import { NavDropdown } from "react-bootstrap";
 import treatmentData from "../data/treatmentData";
 import hospitalData from "../data/hospitalData";
+import { FaChevronDown } from "react-icons/fa";
+
 
 
 // Example treatment data – replace with dynamic source if needed
@@ -63,7 +65,7 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                 <LinkContainer to="/doctor"><Nav.Link>Doctor</Nav.Link></LinkContainer>
 
                 {/* Treatment Dropdown */}
-                <NavDropdown title="Treatment" id="treatment-dropdown">
+                <NavDropdown title={<>Treatment <FaChevronDown size={12} /></>} id="treatment-dropdown">
                   {treatmentData.map((treatment) => (
                     <NavDropdown.Item
                       key={treatment.id}
@@ -73,7 +75,9 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                     </NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                <NavDropdown title="Hospital" id="hospital-dropdown">
+
+                {/* Hospital Dropdown */}
+                <NavDropdown title={<>Hospital <FaChevronDown size={12} /></>} id="hospital-dropdown">
                   {hospitalData.map((hospital) => (
                     <NavDropdown.Item
                       key={hospital.id}
@@ -84,6 +88,7 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                     </NavDropdown.Item>
                   ))}
                 </NavDropdown>
+
 
                 <LinkContainer to="/about"><Nav.Link>About us</Nav.Link></LinkContainer>
 
