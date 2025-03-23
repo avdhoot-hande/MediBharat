@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section
       className="relative bg-cover bg-center min-h-[550px] flex  pt-5 md:pt-10"
       style={{
-        backgroundImage: "url('slider-bg-1.jpg')",
+        backgroundImage: "url('https://www.adlermicromed.com/wp-content/uploads/2018/01/Surg.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         minHeight: '550px',
@@ -19,8 +19,9 @@ const HeroSection = () => {
             <div className="mb-3" style={{ width: '40px', height: '4px', backgroundColor: '#e12454' }}></div>
             <span className="text-uppercase text-muted small d-block mb-2">Total Health care solution</span>
             <h1 className="display-5 fw-bold mb-3" style={{ color: '#004085' }}>Healthcare Beyond Borders</h1>
-            <p className="text-muted mb-4">
-              Receive top-quality medical care while exploring new destinations. Affordable treatments, expert specialists, and personalized support—because your well-being knows no boundaries.
+            <p className="text-muted mb-4 fw-bold  ">
+              Receive top-quality medical care while exploring new destinations. 
+              <p>Affordable treatments, expert specialists, and personalized support—because your well-being knows no boundaries.</p>
             </p>
             
             <Link

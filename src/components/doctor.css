@@ -1,173 +1,94 @@
-/* General Styling */
-.doctor-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
-  background: #f8f9fa;
+.doctor-page {
+  padding: 1rem;
 }
 
-.doctor-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Filters */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.search-bar {
-  padding: 10px;
-  font-size: 16px;
-  width: 220px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.filter-dropdown {
-  width: 220px;
-}
-
-.price-slider-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.price-slider {
-  width: 250px;
-}
-
-/* Doctor List */
-.doctor-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  justify-content: center;
-  align-items: stretch;
-}
-
-/* Doctor Card */
-.doctor-card {
-  background: white;
+.filter-toggle {
+  display: none;
+  margin-bottom: 1rem;
+  background: #eee;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  text-align: center;
-  max-width: 338px;
   cursor: pointer;
+}
+
+.doctor-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.filters-panel {
+  width: 250px;
+  position: sticky ;
+  top: 130px; /* Height of your navbar + top-bar */
+  left: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fafafa;
+  height: fit-content;
+
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.doctor-list {
+  flex: 1;
+}
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.doctor-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .doctor-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
-.doctor-image-container {
+.doctor-image-container img {
   width: 100%;
-  height: 180px;
-  overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.doctor-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Doctor Details */
-.doctor-card h3 {
-  margin: 10px 0;
-  font-size: 18px;
-  color: #333;
-}
-
-.doctor-card p {
-  font-size: 14px;
-  color: #666;
-  margin: 5px 0;
-}
-
-/* Footer with Buttons */
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-/* Buttons */
-.view-details-btn {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.view-details-btn:hover {
-  background: #0056b3;
-}
-
-.favorite-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #bbb;
-  transition: color 0.3s ease;
-}
-
-.favorite-btn.favorited {
-  color: red;
-}
-
-.favorite-btn:hover {
-  color: red;
-}
-
-/* No Results */
-.no-results {
-  text-align: center;
-  font-size: 18px;
-  color: #777;
-}
-
-/* Responsive Layout */
-@media (min-width: 1024px) {
-  .doctor-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 1024px) {
-  .doctor-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
-  .doctor-list {
-    grid-template-columns: repeat(2, 1fr);
+  .doctor-layout {
+    flex-direction: column;
+  }
+
+  .filters-panel {
+    display: none;
+  }
+
+  .filters-panel.show {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .filter-toggle {
+    display: block;
   }
 }
 
-@media (max-width: 480px) {
-  .doctor-list {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.filters {
+  position: sticky;
+  top: 120px; /* adjust based on total height of top-bar + navbar */
+  align-self: flex-start;
+  z-index: 999; /* ensure it's above content */
 }

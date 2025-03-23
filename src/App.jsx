@@ -14,6 +14,8 @@ import DoctorDetail from "./components/DoctorDetail";
 import AdminDashboard from "./components/AdminDashboard";
 import Appointments from "./components/Appointments";
 import About from "./components/about";
+import TreatmentDetails from './components/TreatmentDetails';
+import HospitalDetails from './components/HospitalDetails';
 
 
 function App() {
@@ -60,6 +62,8 @@ function App() {
             <Route path="/doctor/:id" element={<DoctorDetail />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/appointments" element={<Appointments />} />
+            <Route path="/treatment/:id" element={<TreatmentDetails />} />
+            <Route path="/hospital/:id" element={<HospitalDetails />} />
           </Routes>
         </main>
         <Footer />

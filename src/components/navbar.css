@@ -2,7 +2,10 @@
   background-color: #004085;
   color: white;
   padding: 5px 0;
-  font-size: 14px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  z-index: 1051;
 }
 
 .top-bar .social-icon {
@@ -105,4 +108,12 @@
 
 .favorite-icon.favorited {
   color: red;
+}
+
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1050; /* high enough to stay above content */
+  background-color: #fff; /* ensure background isn't transparent */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }

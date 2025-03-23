@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Modal, Button, Form, Alert, Toast, ToastContainer } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './DoctorDetail.css';
 
-
 const DoctorDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // ✅ For Back button
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
@@ -148,6 +148,12 @@ const DoctorDetail = () => {
 
   return (
     <div className="doctor-detail-container">
+
+      {/* ✅ Back Button */}
+      <Button variant="outline-secondary" className="mb-3" onClick={() => navigate(-1)}>
+        ← Back
+      </Button>
+
       <div className="doctor-header">
         <img
           src={doctor.img}
@@ -161,7 +167,6 @@ const DoctorDetail = () => {
           <p><strong>Hospital:</strong> {doctor.hospital_name}</p>
           <p><strong>Experience:</strong> {doctor.years} years</p>
           <p><strong>Price:</strong> ₹{doctor.price?.toLocaleString() || "Not available"}</p>
-          
           <p><strong>Description:</strong> {doctor.description}</p>
           <Button variant="primary" className="mt-3" onClick={() => setShowModal(true)}>Book Appointment</Button>
         </div>
