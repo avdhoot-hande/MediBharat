@@ -12,7 +12,7 @@ const treatmentData = [
       "Enhances exercise tolerance and overall energy levels",
       "Improves the quality of life and reduces shortness of breath"
     ],
-    image: "/images/heart-bypass.jpg",
+    image: "https://www.muhealth.org/sites/default/files/2019-01/hearthealth-compressor.jpg",
     duration: "3-6 hours",
     cost: "₹3,00,000 - ₹5,00,000",
     hospitals: ["Apollo Hospitals", "Fortis Healthcare", "AIIMS", "Max Healthcare", "Kokilaben Dhirubhai Ambani Hospital"],
@@ -42,7 +42,7 @@ const treatmentData = [
       "Improves mobility and reduces stiffness, allowing for better range of motion",
       "Enhances overall quality of life by providing relief from chronic pain"
     ],
-    image: "/images/knee-replacement.jpg",
+    image: "https://img.freepik.com/premium-photo/medical-poster-image-bones-knee-joint-knee-arthritis-inflammation-fracture-cartilage-copy-space_99433-7801.jpg?semt=ais_hybrid",
     duration: "1-2 hours",
     cost: "₹2,00,000 - ₹4,00,000",
     hospitals: ["Max Healthcare", "Manipal Hospitals", "Fortis Healthcare", "AIIMS", "Medanta"],
@@ -72,7 +72,7 @@ const treatmentData = [
       "Reduced risk of preterm birth, gestational diabetes, and hypertension",
       "Optimal fetal growth and development through close supervision"
     ],
-    image: "/images/high-risk-pregnancy.jpg",
+    image: "https://www.ankurahospitals.com/wp-content/uploads/2021/03/gynecology-issues.jpg",
     duration: "Varies depending on the pregnancy's complexity",
     cost: "₹50,000 - ₹2,00,000",
     hospitals: ["AIIMS", "Fortis Healthcare", "Apollo Hospitals", "Max Healthcare", "Kokilaben Dhirubhai Ambani Hospital"],
@@ -102,7 +102,7 @@ const treatmentData = [
       "Improves the appearance of the skin and reduces the frequency of flare-ups",
       "Prevents complications such as skin infections that may arise from persistent scratching"
     ],
-    image: "/images/skin-allergy.jpg",
+    image: "https://www.rahejahospital.com//assets/images/speciality/6231bbcc3d70c_Dermatology_&_Cosmetology_1.jpg",
     duration: "Varies based on severity of the condition; can be managed long-term",
     cost: "₹1,000 - ₹10,000 (depending on the treatment plan)",
     hospitals: ["Fortis Healthcare", "Max Healthcare", "Kochi's KIMS Hospital", "Manipal Hospitals"],
@@ -130,7 +130,7 @@ const treatmentData = [
       "Restores normal kidney function and urine flow",
       "Reduces the likelihood of stone recurrence with proper management"
     ],
-    image: "https://th.bing.com/th/id/OIP.-ckjGRawmLda0qM6c11GqAHaFm?w=235&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+    image: "https://www.stemcellcareindia.com/wp-content/uploads/2016/08/Kidney-disease.jpg",
     duration: "30 minutes to 2 hours depending on the treatment method",
     cost: "₹40,000 - ₹2,00,000",
     hospitals: ["Manipal Hospitals", "Apollo Hospitals", "Max Healthcare", "Fortis Healthcare"],
@@ -159,7 +159,7 @@ const treatmentData = [
       "Reduces the spread of infectious diseases in the community",
       "Ensures the child’s optimal growth and development by preventing illnesses"
     ],
-    image: "/images/child-vaccination.jpg",
+    image: "https://images.ctfassets.net/2ql69mthp94m/2jDmwKqV7HHOX8Qm7l1tJX/a2cb7eb654c2000b980c34017d8b2094/Immunization_schedule_720x480.jpg?fm=webp&q=70",
     duration: "Varies depending on the vaccine schedule (several doses over time)",
     cost: "₹500 - ₹5,000 per vaccine (cost varies based on the vaccine type and hospital)",
     hospitals: ["AIIMS", "Fortis Healthcare", "Apollo Hospitals", "Max Healthcare", "Manipal Hospitals"],
@@ -186,7 +186,7 @@ const treatmentData = [
       "Reduces symptoms such as chest pain and shortness of breath",
       "Improves long-term heart health"
     ],
-    image: "/images/heart-disease.jpg",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIN3_2ZNrKWuhiGdZzyl-R-o0QgNT8ujIlrw&s",
     duration: "ECG: 5-10 minutes, Angioplasty: 1-3 hours depending on complexity",
     cost: "₹20,000 - ₹2,50,000 depending on the type of test and procedure",
     hospitals: ["AIIMS", "Fortis Healthcare", "Apollo Hospitals", "Max Healthcare", "Medanta"],
