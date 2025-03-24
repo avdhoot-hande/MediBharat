@@ -29,7 +29,7 @@ const HeroSection = () => {
               className="btn text-white btn-lg"
               style={{ backgroundColor: '#e12454' }}
             >
-              Make appointment <i className="icofont-simple-right ms-2"></i>
+              Make an enquiry <i className="icofont-simple-right ms-2"></i>
             </Link>
           </div>
         </div>

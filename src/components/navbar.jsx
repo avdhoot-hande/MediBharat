@@ -97,7 +97,7 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                     <Dropdown.Toggle variant="light">{user.name || "User"}</Dropdown.Toggle>
                     <Dropdown.Menu align="end">
                       <LinkContainer to="/appointments">
-                        <Dropdown.Item>Appointments</Dropdown.Item>
+                        <Dropdown.Item>Enquiries</Dropdown.Item>
                       </LinkContainer>
                       <Dropdown.Divider />
                       <Dropdown.Item onClick={onLogout}>Logout</Dropdown.Item>

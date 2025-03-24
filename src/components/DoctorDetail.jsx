@@ -168,7 +168,7 @@ const DoctorDetail = () => {
           <p><strong>Experience:</strong> {doctor.years} years</p>
           <p><strong>Price:</strong> ₹{doctor.price?.toLocaleString() || "Not available"}</p>
           <p><strong>Description:</strong> {doctor.description}</p>
-          <Button variant="primary" className="mt-3" onClick={() => setShowModal(true)}>Book Appointment</Button>
+          <Button variant="primary" className="mt-3" onClick={() => setShowModal(true)}>Enquire</Button>
         </div>
       </div>
 

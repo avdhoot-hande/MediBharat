@@ -57,7 +57,7 @@ const Appointments = () => {
 
     return (
         <Container className="mt-4">
-            <h2 className="mb-4">My Appointments</h2>
+            <h2 className="mb-4">My Enquiries</h2>
 
             {/* User Details */}
             {user && (
@@ -91,7 +91,7 @@ const Appointments = () => {
 
                                 {/* Appointment Details */}
                                 <Col md={8}>
-                                    <Card.Title>Appointment Details</Card.Title>
+                                    <Card.Title>Enquiry Details</Card.Title>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item><strong>Date:</strong> {appt.date}</ListGroup.Item>
                                         <ListGroup.Item><strong>Time:</strong> {appt.time}</ListGroup.Item>
@@ -103,7 +103,7 @@ const Appointments = () => {
 
                                     <div className="mt-3 text-end">
                                         <Button variant="danger" onClick={() => handleDeleteClick(appt.id)}>
-                                            Delete Appointment
+                                            Delete Enquiry
                                         </Button>
                                     </div>
                                 </Col>
