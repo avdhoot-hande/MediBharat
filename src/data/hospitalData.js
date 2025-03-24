@@ -3,7 +3,7 @@ const hospitalData = [
     id: "apollo-hospital",
     name: "Apollo Hospital",
     location: "Delhi",
-    image: "https://www.apollohospitals.com/images/logo.png",
+    image: "https://www.edhacare.com/storage/hospitals/1688387240apollo-hospital-mumbai.webp",
     description: "Apollo Hospital in Delhi is one of India's premier healthcare institutions, providing comprehensive medical services across various specialties. Known for its advanced technology, skilled doctors, and patient-centered approach, Apollo has been a leader in healthcare since 1983.",
     services: [
       "Cardiology", "Orthopedics", "Neurology", "Gastroenterology", 

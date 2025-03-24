@@ -28,6 +28,39 @@ const HospitalDetails = () => {
           <p><strong>Location:</strong> {hospital.location}</p>
           <p><strong>Description:</strong> {hospital.description}</p>
           <p><strong>Services:</strong> {hospital.services.join(", ")}</p>
+          <p><strong>Rating:</strong> {hospital.rating} / 5</p>
+          <p><strong>Year Established:</strong> {hospital.yearEstablished}</p>
+          <p><strong>Notable Achievements:</strong> {hospital.notableAchievements}</p>
+          <p><strong>Specialties:</strong> {hospital.specialties.join(", ")}</p>
+          
+          <h4>Hospital Stats:</h4>
+          <ul>
+            <li><strong>Total Beds:</strong> {hospital.hospitalStats.totalBeds}</li>
+            <li><strong>Surgeons:</strong> {hospital.hospitalStats.surgeons}</li>
+            <li><strong>Annual Patients Treated:</strong> {hospital.hospitalStats.annualPatientsTreated}</li>
+            <li><strong>Success Rate:</strong> {hospital.hospitalStats.successRate}</li>
+          </ul>
+
+          <h4>Treatments Offered:</h4>
+          <ul>
+            {hospital.treatmentsOffered.map((treatment, index) => (
+              <li key={index}>{treatment}</li>
+            ))}
+          </ul>
+
+          <h4>Departments:</h4>
+          <ul>
+            {hospital.departments.map((department, index) => (
+              <li key={index}>{department}</li>
+            ))}
+          </ul>
+
+          <h4>Wards:</h4>
+          <ul>
+            {hospital.wards.map((ward, index) => (
+              <li key={index}>{ward}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
