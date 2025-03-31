@@ -89,8 +89,9 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                   ))}
                 </NavDropdown>
 
-
+                  
                 <LinkContainer to="/about"><Nav.Link>About us</Nav.Link></LinkContainer>
+                <LinkContainer to="/pricing"><Nav.Link>Pricing </Nav.Link></LinkContainer>
 
                 {user ? (
                   <Dropdown className="ms-3">
