@@ -1,0 +1,153 @@
+.pricing-container {
+    padding: 60px 0;
+  }
+  
+  .pricing-title {
+    color: #033f63;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .pricing-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .pricing-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-top: 5px solid;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .pricing-card.popular {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+  
+  .pricing-card.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+  }
+  
+  .popular-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+  }
+  
+  .plan-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .plan-name {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .price-container {
+    padding: 15px 0;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #033f63;
+  }
+  
+  .period {
+    font-size: 1rem;
+    color: #666;
+    display: block;
+  }
+  
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .feature-list li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .feature-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .feature-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .feature-icon.included {
+    color: #28a745;
+  }
+  
+  .feature-icon.excluded {
+    color: #dc3545;
+  }
+  
+  .excluded {
+    color: #999;
+  }
+  
+  .subscribe-btn {
+    width: 100%;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .subscription-success-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 992px) {
+    .pricing-card.popular {
+      transform: none;
+    }
+  
+    .pricing-card.popular:hover {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .pricing-title {
+      font-size: 2rem;
+    }
+  
+    .pricing-subtitle {
+      font-size: 1rem;
+    }
+  
+    .price {
+      font-size: 2rem;
+    }
+  
+    .subscription-success-alert {
+      width: 90%;
+      left: 5%;
+      right: 5%;
+    }
+  }
+  
+  
