@@ -4,68 +4,73 @@
     padding-top: 4rem;
     padding-bottom: 4rem;
     background-color: white;
-  }
-  
-  .treatment-title {
+}
+
+.treatment-title {
     text-align: center;
     margin-bottom: 3rem;
-  }
-  
-  .treatment-title h2 {
+}
+
+.treatment-title h2 {
     font-size: 2.25rem;
     font-weight: bold;
     color: #1f2937;
-  }
-  
-  .treatment-title p {
+}
+
+.treatment-title p {
     margin-top: 1rem;
     font-size: 1.125rem;
     color: #4b5563;
-  }
-  
-  .treatment-grid {
+}
+
+.treatment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
     gap: 2rem;
-  }
-  
-  .treatment-card {
+    justify-content: start; /* Aligns content to the start of the container */
+    padding: 0 1rem; /* Adds padding to the left and right for spacing */
+    /* Make sure the grid adjusts based on the number of items */
+    grid-template-columns: repeat(4, 1fr); /* Ensures exactly 4 items in a row */
+}
+
+
+.treatment-card {
     background-color: white;
     border-radius: 0.75rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
     cursor: pointer;
-  }
-  
-  .treatment-card:hover {
+}
+
+.treatment-card:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .treatment-image {
+}
+
+.treatment-image {
     position: relative;
     width: 100%;
     height: 12rem;
     overflow: hidden;
-  }
-  
-  .treatment-image img {
+}
+
+.treatment-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  .treatment-content {
+}
+
+.treatment-content {
     padding: 1.5rem;
-  }
-  
-  .treatment-name {
+}
+
+.treatment-name {
     font-size: 1.25rem;
     font-weight: 600;
     color: #1f2937;
     margin-bottom: 1rem;
-  }
-  
-  .treatment-description {
+}
+
+.treatment-description {
     color: #4b5563;
     font-size: 0.875rem;
     margin-bottom: 1rem;
@@ -73,57 +78,57 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-  
-  .treatment-details {
+}
+
+.treatment-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
-  }
-  
-  .treatment-details span {
+}
+
+.treatment-details span {
     display: flex;
     align-items: center;
-  }
-  
-  .treatment-details svg {
+}
+
+.treatment-details svg {
     width: 1rem;
     height: 1rem;
     color: #2563eb;
     margin-right: 0.5rem;
-  }
-  
-  .treatment-expanded {
+}
+
+.treatment-expanded {
     margin-top: 1.5rem;
     border-top: 1px solid #e5e7eb;
     padding-top: 1rem;
-  }
-  
-  .treatment-benefits,
-  .treatment-risks {
+}
+
+.treatment-benefits,
+.treatment-risks {
     margin-bottom: 1rem;
-  }
-  
-  .treatment-benefits ul,
-  .treatment-risks ul {
+}
+
+.treatment-benefits ul,
+.treatment-risks ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .treatment-benefits li,
-  .treatment-risks li {
+}
+
+.treatment-benefits li,
+.treatment-risks li {
     display: flex;
     align-items: start;
-  }
-  
-  .treatment-benefits svg,
-  .treatment-risks svg {
+}
+
+.treatment-benefits svg,
+.treatment-risks svg {
     margin-top: 0.25rem;
     margin-right: 0.5rem;
-  }
-  
-  .treatment-button {
+}
+
+.treatment-button {
     display: inline-flex;
     align-items: center;
     padding: 0.5rem 1rem;
@@ -132,9 +137,8 @@
     color: white;
     border-radius: 0.375rem;
     cursor: pointer;
-  }
-  
-  .treatment-button:hover {
+}
+
+.treatment-button:hover {
     background-color: #1d4ed8;
-  }
-  
+}

@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom'; // Importing useNavigate
 import treatmentData from '../data/treatmentData';
 import './TreatmentSection.css';
 
+
 const TreatmentSection = () => {
   const [selectedTreatment, setSelectedTreatment] = useState(null);
   const navigate = useNavigate(); // Hook for navigation
 
-  // Limit the number of cards to 4 or 5
-  const limitedTreatments = treatmentData.slice(0, 4); // Change to 4 for 4 cards
+  // Limit the number of cards to 4
+  const limitedTreatments = treatmentData.slice(0, 4); // Now we slice exactly 4 items
 
   const handleCardClick = (id) => {
     // Navigate to the treatment detail page for the clicked treatment
@@ -38,7 +39,7 @@ const TreatmentSection = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               <div className="treatment-content">
                 <h3 className="treatment-name">{treatment.name}</h3>
                 <p className="treatment-description">{treatment.description}</p>
