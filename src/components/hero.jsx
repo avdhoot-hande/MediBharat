@@ -19,10 +19,13 @@ const HeroSection = () => {
             <div className="mb-3" style={{ width: '40px', height: '4px', backgroundColor: '#e12454' }}></div>
             <span className="text-uppercase text-muted small d-block mb-2">Total Health care solution</span>
             <h1 className="display-5 fw-bold mb-3" style={{ color: '#004085' }}>Healthcare Beyond Borders</h1>
-            <p className="text-muted mb-4 fw-bold  ">
-              Receive top-quality medical care while exploring new destinations. 
-              <p>Affordable treatments, expert specialists, and personalized support—because your well-being knows no boundaries.</p>
-            </p>
+            <p className="text-muted mb-4 fw-bold">
+  Receive top-quality medical care while exploring new destinations. 
+</p>
+<p className="text-muted mb-4 fw-bold">
+  Affordable treatments, expert specialists, and personalized support—because your well-being knows no boundaries.
+</p>
+
             
             <Link
               to="/doctor"

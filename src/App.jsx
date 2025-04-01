@@ -16,7 +16,9 @@ import Appointments from "./components/Appointments";
 import About from "./components/about";
 import TreatmentDetails from './components/TreatmentDetails';
 import HospitalDetails from './components/HospitalDetails';
-import Pricing from "./components/pricing"
+import Pricing from "./components/pricing";
+import HospitalSection from "./components/hospital_landing";
+import TreatmentSection from "./components/treatment_landing";
 
 function App() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
@@ -53,6 +55,8 @@ function App() {
                 <>
                   <Hero />
                   <SpecialistDoctors />
+                  <HospitalSection/>
+                  <TreatmentSection/>
                   <CallToAction />
                 </>
               }

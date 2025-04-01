@@ -1,0 +1,144 @@
+/* General Section Styling */
+.hospital-section {
+    padding: 4rem 0;
+    background-color: #f9fafb;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+  }
+  
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+  }
+  
+  .section-header p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #4b5563;
+  }
+  
+  /* Hospital Grid */
+  .hospital-grid {
+    display: flex;
+    justify-content: space-between; /* Keeps 3 items in a row */
+    align-items: stretch; /* Ensures all cards have the same height */
+    gap: 1rem;
+    transition: transform 0.5s ease-in-out; /* Smooth shifting */
+  }
+  
+  /* Hospital Card */
+  .hospital-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+    width: 30%; /* Ensures exactly 3 per row */
+    display: flex; /* Use flexbox to make content stretch evenly */
+    flex-direction: column; /* Stack content vertically */
+    height: 100%; /* Ensures all cards take equal height */
+  }
+  
+  /* Hover effect on the card */
+  .hospital-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Hospital Image */
+  .hospital-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .hospital-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hospital-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .star {
+    color: #facc15;
+    margin-right: 5px;
+  }
+  
+  /* Hospital Content */
+  .hospital-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ensures content fills remaining space */
+  }
+  
+  /* Hospital Stats */
+  .hospital-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Ensures the stats section does not overflow */
+  }
+  
+  .hospital-stats div {
+    display: flex;
+    align-items: center;
+    color: #4b5563;
+    font-size: 0.9rem;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .blue {
+    color: #2563eb;
+  }
+  
+  /* View Details Button */
+  .details-button {
+    display: flex;
+    justify-content: center;
+    margin-top: auto; /* Push the button to the bottom */
+  }
+  
+  .details-button button {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .details-button button:hover {
+    background-color: #1e40af;
+  }
+  
