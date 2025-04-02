@@ -56,7 +56,7 @@ const SpecialistDoctors = () => {
                 variant="top" 
                 src={doctor.img} 
                 alt={doctor.name} 
-                style={{ height: '200px', objectFit: 'cover' }} 
+                style={{ height: '200px', objectFit: 'contain' }} 
               />
               <Card.Body style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
