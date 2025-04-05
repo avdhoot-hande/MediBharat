@@ -1,7 +1,9 @@
-// AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import {
+  BarChart, Bar, PieChart, Pie, Cell,
+  XAxis, YAxis, Tooltip, Legend
+} from "recharts";
 import "./adminDashboard.css";
 
 const COLORS = ["#033f63", "#007bb5", "#00a3e0", "#66c2ff", "#99d6ff"];
@@ -17,21 +19,12 @@ const AdminDashboard = () => {
   const [searchDoctor, setSearchDoctor] = useState("");
   const [searchAppointment, setSearchAppointment] = useState("");
   const [newDoctor, setNewDoctor] = useState({
-    name: "",
-    hospital_name: "",
-    years: "",
-    certification: "",
-    specialization: "",
-    treatment: "",
-    img: "",
-    reviews: "",
-    description: "",
-    city: "",
-    location: "",
-    price: "",
-    mail: "",
+    name: "", hospital_name: "", years: "", certification: "", specialization: "",
+    treatment: "", img: "", reviews: "", description: "", city: "", location: "",
+    price: "", mail: "",
   });
   const [statusUpdateMsg, setStatusUpdateMsg] = useState("");
+  const [actionMessage, setActionMessage] = useState("");
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -40,6 +33,13 @@ const AdminDashboard = () => {
     fetchUsers();
     fetchReviews();
   }, [refresh]);
+
+  useEffect(() => {
+    if (actionMessage) {
+      const timer = setTimeout(() => setActionMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [actionMessage]);
 
   const fetchDoctors = async () => {
     try {
@@ -83,20 +83,11 @@ const AdminDashboard = () => {
       await axios.post(`${BACKEND_URL}/doctors`, newDoctor);
       fetchDoctors();
       setNewDoctor({
-        name: "",
-        hospital_name: "",
-        years: "",
-        certification: "",
-        specialization: "",
-        treatment: "",
-        img: "",
-        reviews: "",
-        description: "",
-        city: "",
-        location: "",
-        price: "",
-        mail: "",
+        name: "", hospital_name: "", years: "", certification: "", specialization: "",
+        treatment: "", img: "", reviews: "", description: "", city: "", location: "",
+        price: "", mail: "",
       });
+      setActionMessage("Doctor added successfully!");
     } catch (error) {
       console.error("Error adding doctor:", error);
     }
@@ -104,27 +95,27 @@ const AdminDashboard = () => {
 
   const deleteDoctor = async (id) => {
     try {
-      // First delete all appointments with this doctor
       await axios.delete(`${BACKEND_URL}/appointments/doctor/${id}`);
-      
-      // Then delete the doctor
-      const res = await axios.delete(`${BACKEND_URL}/doctors/${id}`);
-      console.log('Doctor deleted:', res.data);
+      await axios.delete(`${BACKEND_URL}/doctors/${id}`);
       fetchDoctors();
+      setActionMessage("Doctor deleted successfully!");
     } catch (error) {
-      console.error('Error deleting doctor:', error.response?.data || error.message);
-      alert('Failed to delete doctor. See console for details.');
+      console.error("Error deleting doctor:", error.response?.data || error.message);
+      alert("Failed to delete doctor. See console for details.");
     }
   };
-  
-  
 
   const updateAppointmentStatus = async (id, newStatus) => {
     try {
       const response = await axios.put(`${BACKEND_URL}/appointments/${id}/status`, { status: newStatus });
       if (response.status === 200) {
+        setAppointments((prevAppointments) =>
+          prevAppointments.map((appointment) =>
+            appointment.id === id ? { ...appointment, status: newStatus } : appointment
+          )
+        );
         setStatusUpdateMsg(`Appointment ${id} updated to ${newStatus}`);
-        setRefresh((prev) => !prev);
+        setActionMessage("Appointment status updated!");
         setTimeout(() => setStatusUpdateMsg(""), 3000);
       }
     } catch (error) {
@@ -133,8 +124,13 @@ const AdminDashboard = () => {
     }
   };
 
-  const filteredDoctors = doctors.filter((doctor) => doctor.name.toLowerCase().includes(searchDoctor.toLowerCase()));
-  const filteredAppointments = appointments.filter((appointment) => appointment.user_name?.toLowerCase().includes(searchAppointment.toLowerCase()));
+  const filteredDoctors = doctors.filter((doctor) =>
+    doctor.name.toLowerCase().includes(searchDoctor.toLowerCase())
+  );
+
+  const filteredAppointments = appointments.filter((appointment) =>
+    appointment.user_name?.toLowerCase().includes(searchAppointment.toLowerCase())
+  );
 
   const renderChart = () => {
     if (analyticsSection === "appointments") {
@@ -144,22 +140,22 @@ const AdminDashboard = () => {
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       const reasonData = Object.entries(
         appointments.reduce((acc, a) => {
           acc[a.reason] = (acc[a.reason] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       const monthData = Object.entries(
         appointments.reduce((acc, a) => {
-          const month = new Date(a.date).toLocaleString('default', { month: 'short' });
+          const month = new Date(a.date).toLocaleString("default", { month: "short" });
           acc[month] = (acc[month] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       return (
         <div className="analytics-graphs">
           <h3>Status Overview</h3>
@@ -170,18 +166,15 @@ const AdminDashboard = () => {
             <Legend />
             <Bar dataKey="value" fill="#033f63" />
           </BarChart>
-  
+
           <h3>Reason Breakdown</h3>
           <PieChart width={600} height={400}>
             <Pie
               data={reasonData}
               dataKey="value"
               nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={150}
-              fill="#007bb5"
-              label
+              cx="50%" cy="50%" outerRadius={150}
+              fill="#007bb5" label
             >
               {reasonData.map((_, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -189,7 +182,7 @@ const AdminDashboard = () => {
             </Pie>
             <Tooltip />
           </PieChart>
-  
+
           <h3>Appointments by Month</h3>
           <BarChart width={600} height={350} data={monthData}>
             <XAxis dataKey="name" />
@@ -199,21 +192,23 @@ const AdminDashboard = () => {
           </BarChart>
         </div>
       );
-    } else if (analyticsSection === "doctors") {
+    }
+
+    if (analyticsSection === "doctors") {
       const specData = Object.entries(
         doctors.reduce((acc, d) => {
           acc[d.specialization] = (acc[d.specialization] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       const treatmentData = Object.entries(
         doctors.reduce((acc, d) => {
           acc[d.treatment] = (acc[d.treatment] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       return (
         <div className="analytics-graphs">
           <h3>Specialization Distribution</h3>
@@ -223,18 +218,15 @@ const AdminDashboard = () => {
             <Tooltip />
             <Bar dataKey="value" fill="#007bb5" />
           </BarChart>
-  
+
           <h3>Doctors by Treatment</h3>
           <PieChart width={600} height={400}>
             <Pie
               data={treatmentData}
               dataKey="value"
               nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={150}
-              fill="#00a3e0"
-              label
+              cx="50%" cy="50%" outerRadius={150}
+              fill="#00a3e0" label
             >
               {treatmentData.map((_, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -244,14 +236,16 @@ const AdminDashboard = () => {
           </PieChart>
         </div>
       );
-    } else if (analyticsSection === "patients") {
+    }
+
+    if (analyticsSection === "patients") {
       const countryData = Object.entries(
         users.reduce((acc, u) => {
           if (u.country) acc[u.country] = (acc[u.country] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       return (
         <div className="analytics-graphs">
           <h3>Patients by Country</h3>
@@ -263,14 +257,16 @@ const AdminDashboard = () => {
           </BarChart>
         </div>
       );
-    } else if (analyticsSection === "reviews") {
+    }
+
+    if (analyticsSection === "reviews") {
       const reviewData = Object.entries(
         reviews.reduce((acc, r) => {
           acc[r.doctor_name] = (acc[r.doctor_name] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-  
+
       return (
         <div className="analytics-graphs">
           <h3>5-Star Reviews</h3>
@@ -279,11 +275,8 @@ const AdminDashboard = () => {
               data={reviewData}
               dataKey="value"
               nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={150}
-              fill="#033f63"
-              label
+              cx="50%" cy="50%" outerRadius={150}
+              fill="#033f63" label
             >
               {reviewData.map((_, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -295,14 +288,13 @@ const AdminDashboard = () => {
       );
     }
   };
-  
 
   return (
     <div className="admin-container">
       <div className="sidebar">
         <h3>MediBharat Admin</h3>
         <ul>
-        <li onClick={() => setActiveTab("analytics")} className={activeTab === "analytics" ? "active" : ""}>Analytics</li>
+          <li onClick={() => setActiveTab("analytics")} className={activeTab === "analytics" ? "active" : ""}>Analytics</li>
           <li onClick={() => setActiveTab("addDoctor")} className={activeTab === "addDoctor" ? "active" : ""}>Add Doctor</li>
           <li onClick={() => setActiveTab("deleteDoctor")} className={activeTab === "deleteDoctor" ? "active" : ""}>Delete Doctor</li>
           <li onClick={() => setActiveTab("appointments")} className={activeTab === "appointments" ? "active" : ""}>Appointments</li>
@@ -310,20 +302,28 @@ const AdminDashboard = () => {
       </div>
 
       <div className="main-content">
+      {actionMessage && <div className="toast-popup">{actionMessage}</div>}
+
+
         {activeTab === "addDoctor" && (
           <div>
             <h2>Add a Doctor</h2>
             <form onSubmit={addDoctor}>
-              {Object.keys(newDoctor).map((key) => (
-                <input
-                  key={key}
-                  type="text"
-                  className="form-control"
-                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)}
-                  value={newDoctor[key]}
-                  onChange={(e) => setNewDoctor({ ...newDoctor, [key]: e.target.value })}
-                />
-              ))}
+              <div className="add-doctor-form">
+                {Object.keys(newDoctor).map((key) => (
+                  <div className="form-group-row" key={key}>
+                    <label className="form-label">
+                      {key.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      value={newDoctor[key]}
+                      onChange={(e) => setNewDoctor({ ...newDoctor, [key]: e.target.value })}
+                    />
+                  </div>
+                ))}
+              </div>
               <button type="submit" className="btn btn-success">Add Doctor</button>
             </form>
           </div>
@@ -373,7 +373,9 @@ const AdminDashboard = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th>ID</th><th>User</th><th>Doctor</th><th>Hospital</th><th>Specialization</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Update</th>
+                  <th>ID</th><th>User</th><th>Doctor</th><th>Hospital</th>
+                  <th>Specialization</th><th>Date</th><th>Time</th>
+                  <th>Reason</th><th>Status</th><th>Update</th>
                 </tr>
               </thead>
               <tbody>
