@@ -94,5 +94,5 @@
   cursor: pointer;
   width: 100%;
   height: auto;
-  align-self: flex-start; /* <== This prevents stretching */
+  align-self: flex-start;
 }
