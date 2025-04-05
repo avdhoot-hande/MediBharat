@@ -82,7 +82,8 @@ const CustomNavbar = ({ user, onLogout, onLoginClick }) => {
                     <NavDropdown.Item
                       key={hospital.id}
                       as="span"
-                      onClick={() => navigate(`/hospital/${hospital.id}`)}
+                      onClick={() => navigate(`/hospital/${hospital.id}`)} // ✅ backticks
+
                     >
                       {hospital.name}
                     </NavDropdown.Item>

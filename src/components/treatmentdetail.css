@@ -1,92 +1,98 @@
-.treatment-detail-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Layout for Image on the Right and Info on the Left */
-.treatment-card {
-  display: flex;
-  flex-direction: row-reverse; /* Reverses the order to put image on the right */
-  align-items: flex-start;
-  gap: 2rem;
+.treatment-detail {
+  font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
 }
 
-/* Image on the Right */
-.treatment-image-container {
-  flex: 1;
-  max-width: 350px;
+.top-space {
+  height: 20px; /* Space for navbar/logo */
 }
 
-.treatment-image {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.back-button-container {
+  padding: 0 1rem;
+  margin-top: -1rem;
 }
 
-/* Information on the Left */
-.treatment-info {
-  flex: 2;
-  min-width: 300px;
+.back-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
 }
 
-/* Not Found Message */
-.not-found {
+.treatment-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.treatment-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #222;
   text-align: center;
-  font-size: 1.5rem;
-  color: red;
-  margin-top: 2rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .treatment-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+.treatment-columns {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-/* Table Styling */
-.hospital-table {
+.column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+}
+
+.card li {
+  margin-bottom: 0.5rem;
+}
+
+.image-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.block-image {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 2rem;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
-.hospital-table th,
-.hospital-table td {
-  border: 1px solid #ccc;
-  padding: 16px;
-  text-align: left;
-}
-
-.hospital-table th {
-  background-color: #004085;
-  color: white;
-}
-
-.hospital-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.hospital-table tbody tr:hover {
-  background-color: #d1e0ff;
-}
-
-/* Headline Styling */
-h2 {
-  color: #004085;
-}
-
-h4 {
-  margin-top: 2rem;
-  color: #004085;
-  font-size: 1.5rem;
+.card.hospital-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  align-self: flex-start; /* <== This prevents stretching */
 }

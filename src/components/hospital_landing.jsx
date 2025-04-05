@@ -48,14 +48,14 @@ const HospitalSection = () => {
 
               <div className="hospital-content">
                 <div className="hospital-header">
-                  <h3>{hospital.name}</h3>
+                  <h4>{hospital.name}</h4>
                   <div className="hospital-location">
                     <MapPin className="icon" />
                     <span>{hospital.location}</span>
                   </div>
                 </div>
 
-                <p className="hospital-description">{hospital.description}</p>
+                {/* <p className="hospital-description">{hospital.description}</p> */}
 
                 <div className="hospital-stats">
                   <div>
@@ -68,7 +68,7 @@ const HospitalSection = () => {
                   </div>
                   <div>
                     <Users className="icon blue" />
-                    <span>{(hospital.hospitalStats.annualPatientsTreated / 1000).toFixed(0)}K+ Patients/Year</span>
+                    <span>{(hospital.hospitalStats.annualPatientsTreated / 1000).toFixed(0)}K+ Yearly </span>
                   </div>
                   <div>
                     <TrendingUp className="icon blue" />

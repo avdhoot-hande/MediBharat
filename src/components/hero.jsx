@@ -10,7 +10,7 @@ const HeroSection = () => {
         backgroundImage: "url('https://www.adlermicromed.com/wp-content/uploads/2018/01/Surg.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: '550px',
+        minHeight: '450px',
       }}
     >
       <div className="container">
@@ -55,7 +55,7 @@ const FeatureBox = ({ icon, title, subtitle, description, children }) => (
 
 const FeaturesSection = () => {
   return (
-    <section className="position-relative" style={{ marginTop: '-100px', zIndex: '10' }}>
+    <section className="position-relative" style={{ marginTop: '-80px', zIndex: '10' }}>
       <div className="container">
         <div className="row g-4">
           <div className="col-md-4">

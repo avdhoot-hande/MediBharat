@@ -49,14 +49,14 @@ const SpecialistDoctors = () => {
         {doctors.map((doctor) => (
           <div key={doctor.d_id} style={{ padding: "10px" }}>
             <Card 
-              style={{ width: '16rem', height: '400px', margin: '0 auto', textAlign: 'center', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}
+              style={{ width: '16rem', height: '380px', margin: '0 auto', textAlign: 'center', display: 'flex', flexDirection: 'column', cursor: 'pointer', padding: '0' }}
               onClick={() => navigate(`/doctor/${doctor.d_id}`)} // Navigate to detail page on click
             >
               <Card.Img 
                 variant="top" 
                 src={doctor.img} 
                 alt={doctor.name} 
-                style={{ height: '200px', objectFit: 'contain' }} 
+                style={{ height: '250px', objectFit: 'cover', objectPosition:'top'}} 
               />
               <Card.Body style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>

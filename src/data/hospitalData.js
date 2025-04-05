@@ -42,7 +42,7 @@ const hospitalData = [
     id: "fortis-hospital",
     name: "Fortis Hospital",
     location: "Mumbai",
-    image: "https://www.fortishealthcare.com/img/logo-new.png",
+    image: "https://th.bing.com/th/id/OIP.AnRCbvc3sSnvRvw3BOmrRAHaDt?w=323&h=175&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     description: "Fortis Hospital, Mumbai, is part of the renowned Fortis Healthcare Group and offers world-class medical services across various specialties. Known for its excellence in cardiac care, urology, and oncology, Fortis has been a trusted name in healthcare since 2001.",
     services: [
       "Cancer Care", "Urology", "Gastroenterology", "Pediatrics", 
@@ -80,9 +80,9 @@ const hospitalData = [
   },
   {
     id: "max-hospital",
-    name: "Max Super Specialty Hospital",
+    name: "max hospital",
     location: "New Delhi",
-    image: "https://www.maxhealthcare.in/assets/images/max-logo.png",
+    image: "https://th.bing.com/th/id/OIP.RlmIUU70-Xu38vlV5rr8mAHaEK?w=310&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     description: "Max Super Specialty Hospital in New Delhi is a multi-specialty healthcare provider offering cutting-edge medical treatments. Established in 2000, it is renowned for its services in cardiac surgery, oncology, and neurosurgery. The hospital’s facilities ensure the best care for all patients.",
     services: [
       "Cardiac Surgery", "Neurosurgery", "Transplants", 
@@ -117,10 +117,10 @@ const hospitalData = [
     ]
   },
   {
-    id: "medanta-hospital",
-    name: "Medanta - The Medicity",
+    id: "medanta",
+    name: "Medanta",
     location: "Gurugram",
-    image: "https://www.medanta.org/wp-content/themes/medanta/images/medanta-logo.png",
+    image: "https://th.bing.com/th/id/OIP.HvFoQnW3GLSalVtQtoIFWAHaDI?w=335&h=148&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     description: "Medanta - The Medicity in Gurugram is a multi-specialty hospital offering world-class medical services. Established in 2009, it is equipped with advanced medical technology and expert doctors specializing in cardiology, oncology, orthopedics, and neurology.",
     services: [
       "Cardiology", "Cancer Care", "Neurology", "Orthopedics", 
@@ -159,7 +159,7 @@ const hospitalData = [
     id: "bliss-hospital",
     name: "Bliss Hospital",
     location: "Kolkata",
-    image: "https://www.blisshospital.com/logo.png",
+    image: "https://www.blisshospital.com/images/hm2.jpg",
     description: "Bliss Hospital, located in Kolkata, is known for its affordable healthcare services in maternity care, general surgery, and pediatrics. Established in 1995, it provides high-quality treatment with a focus on compassion and patient satisfaction.",
     services: [
       "Maternity Care", "General Surgery", "Pediatrics", "Orthopedics", 

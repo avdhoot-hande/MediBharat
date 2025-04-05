@@ -8,7 +8,7 @@ const COLORS = ["#033f63", "#007bb5", "#00a3e0", "#66c2ff", "#99d6ff"];
 
 const AdminDashboard = () => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-  const [activeTab, setActiveTab] = useState("addDoctor");
+  const [activeTab, setActiveTab] = useState("analytics");
   const [analyticsSection, setAnalyticsSection] = useState("appointments");
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
@@ -144,34 +144,42 @@ const AdminDashboard = () => {
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-
+  
       const reasonData = Object.entries(
         appointments.reduce((acc, a) => {
           acc[a.reason] = (acc[a.reason] || 0) + 1;
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-
+  
+      const monthData = Object.entries(
+        appointments.reduce((acc, a) => {
+          const month = new Date(a.date).toLocaleString('default', { month: 'short' });
+          acc[month] = (acc[month] || 0) + 1;
+          return acc;
+        }, {})
+      ).map(([name, value]) => ({ name, value }));
+  
       return (
         <div className="analytics-graphs">
           <h3>Status Overview</h3>
-          <BarChart width={400} height={250} data={statusData}>
+          <BarChart width={600} height={350} data={statusData}>
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
             <Bar dataKey="value" fill="#033f63" />
           </BarChart>
-
+  
           <h3>Reason Breakdown</h3>
-          <PieChart width={300} height={250}>
+          <PieChart width={600} height={400}>
             <Pie
               data={reasonData}
               dataKey="value"
               nameKey="name"
               cx="50%"
               cy="50%"
-              outerRadius={80}
+              outerRadius={150}
               fill="#007bb5"
               label
             >
@@ -181,6 +189,14 @@ const AdminDashboard = () => {
             </Pie>
             <Tooltip />
           </PieChart>
+  
+          <h3>Appointments by Month</h3>
+          <BarChart width={600} height={350} data={monthData}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="value" fill="#66c2ff" />
+          </BarChart>
         </div>
       );
     } else if (analyticsSection === "doctors") {
@@ -190,16 +206,42 @@ const AdminDashboard = () => {
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-
+  
+      const treatmentData = Object.entries(
+        doctors.reduce((acc, d) => {
+          acc[d.treatment] = (acc[d.treatment] || 0) + 1;
+          return acc;
+        }, {})
+      ).map(([name, value]) => ({ name, value }));
+  
       return (
         <div className="analytics-graphs">
           <h3>Specialization Distribution</h3>
-          <BarChart width={400} height={250} data={specData}>
+          <BarChart width={600} height={350} data={specData}>
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Bar dataKey="value" fill="#007bb5" />
           </BarChart>
+  
+          <h3>Doctors by Treatment</h3>
+          <PieChart width={600} height={400}>
+            <Pie
+              data={treatmentData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={150}
+              fill="#00a3e0"
+              label
+            >
+              {treatmentData.map((_, index) => (
+                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
         </div>
       );
     } else if (analyticsSection === "patients") {
@@ -209,11 +251,11 @@ const AdminDashboard = () => {
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-
+  
       return (
         <div className="analytics-graphs">
           <h3>Patients by Country</h3>
-          <BarChart width={400} height={250} data={countryData}>
+          <BarChart width={600} height={350} data={countryData}>
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
@@ -228,18 +270,18 @@ const AdminDashboard = () => {
           return acc;
         }, {})
       ).map(([name, value]) => ({ name, value }));
-
+  
       return (
         <div className="analytics-graphs">
           <h3>5-Star Reviews</h3>
-          <PieChart width={300} height={250}>
+          <PieChart width={600} height={400}>
             <Pie
               data={reviewData}
               dataKey="value"
               nameKey="name"
               cx="50%"
               cy="50%"
-              outerRadius={80}
+              outerRadius={150}
               fill="#033f63"
               label
             >
@@ -253,6 +295,7 @@ const AdminDashboard = () => {
       );
     }
   };
+  
 
   return (
     <div className="admin-container">

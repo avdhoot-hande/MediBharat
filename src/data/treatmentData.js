@@ -73,7 +73,7 @@ const treatmentData = [
       "Optimal fetal growth and development through close supervision"
     ],
     image: "https://www.ankurahospitals.com/wp-content/uploads/2021/03/gynecology-issues.jpg",
-    duration: "Varies depending on the pregnancy's complexity",
+    duration: "Varies",
     cost: "₹50,000 - ₹2,00,000",
     hospitals: ["AIIMS", "Fortis Healthcare", "Apollo Hospitals", "Max Healthcare", "Kokilaben Dhirubhai Ambani Hospital"],
     recovery: "Recovery depends on the type of delivery (C-section or vaginal) and any complications that arise. Postpartum care includes monitoring for infections, breastfeeding support, and mental health care for both mother and baby.",
@@ -103,8 +103,8 @@ const treatmentData = [
       "Prevents complications such as skin infections that may arise from persistent scratching"
     ],
     image: "https://www.rahejahospital.com//assets/images/speciality/6231bbcc3d70c_Dermatology_&_Cosmetology_1.jpg",
-    duration: "Varies based on severity of the condition; can be managed long-term",
-    cost: "₹1,000 - ₹10,000 (depending on the treatment plan)",
+    duration: "Varies",
+    cost: "₹1,000 - ₹10,000 ",
     hospitals: ["Fortis Healthcare", "Max Healthcare", "Kochi's KIMS Hospital", "Manipal Hospitals"],
     recovery: "Most skin allergies resolve within a few days to weeks of starting treatment, though some chronic conditions like eczema require ongoing care and lifestyle adjustments. With proper management, flare-ups can be minimized.",
     procedureDetails: "Treatment may include topical corticosteroids for localized reactions, oral antihistamines for general allergic responses, and specific treatments like immunotherapy (allergy shots) for long-term relief of certain allergies. Patch testing may be done to identify specific allergens.",
@@ -160,7 +160,7 @@ const treatmentData = [
       "Ensures the child’s optimal growth and development by preventing illnesses"
     ],
     image: "https://images.ctfassets.net/2ql69mthp94m/2jDmwKqV7HHOX8Qm7l1tJX/a2cb7eb654c2000b980c34017d8b2094/Immunization_schedule_720x480.jpg?fm=webp&q=70",
-    duration: "Varies depending on the vaccine schedule (several doses over time)",
+    duration: "Varies",
     cost: "₹500 - ₹5,000 per vaccine (cost varies based on the vaccine type and hospital)",
     hospitals: ["AIIMS", "Fortis Healthcare", "Apollo Hospitals", "Max Healthcare", "Manipal Hospitals"],
     recovery: "Post-vaccination recovery is generally short, with most side effects (like mild fever or soreness) disappearing within a few days. It's important to monitor the child for any unusual reactions after vaccination.",
