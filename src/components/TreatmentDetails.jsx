@@ -31,12 +31,13 @@ const TreatmentDetail = () => {
               <img src={treatment.image} alt={treatment.name} className="block-image" />
             </div>
 
-            <div className="card">
-              <h2>Description</h2>
-              <p>{treatment.description}</p>
-              <p><strong>Duration:</strong> {treatment.duration}</p>
-              <p><strong>Cost:</strong> {treatment.cost}</p>
-              <p><strong>Recovery:</strong> {treatment.recovery}</p>
+            <div className="card hospital-card">
+              <h2>Top Hospitals</h2>
+              <ul>
+                {treatment.hospitals.map((hospital, index) => (
+                  <li key={index}>{hospital}</li>
+                ))}
+              </ul>
             </div>
 
             <div className="card">
@@ -56,13 +57,12 @@ const TreatmentDetail = () => {
 
           {/* Right Column */}
           <div className="column">
-            <div className="card hospital-card">
-              <h2>Top Hospitals</h2>
-              <ul>
-                {treatment.hospitals.map((hospital, index) => (
-                  <li key={index}>{hospital}</li>
-                ))}
-              </ul>
+            <div className="card">
+              <h2>Description</h2>
+              <p>{treatment.description}</p>
+              <p><strong>Duration:</strong> {treatment.duration}</p>
+              <p><strong>Cost:</strong> {treatment.cost}</p>
+              <p><strong>Recovery:</strong> {treatment.recovery}</p>
             </div>
 
             <div className="card">

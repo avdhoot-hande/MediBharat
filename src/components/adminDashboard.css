@@ -18,12 +18,16 @@
 .sidebar ul {
   list-style: none;
   padding-left: 0;
+  margin-top: 20px;
 }
 
 .sidebar li {
-  padding: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 
 .sidebar li.active,
@@ -45,12 +49,15 @@
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .btn {
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-success {
@@ -84,7 +91,36 @@
   border-radius: 4px;
 }
 
-/* adminDashboard.css */
+/* ========== NEW ========== */
+.analytics-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.analytics-tabs button {
+  padding: 10px 16px;
+  background-color: #e6f2ff;
+  color: #033f63;
+  border: 1px solid #007bb5;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.analytics-tabs button:hover {
+  background-color: #007bb5;
+  color: white;
+}
+
+.analytics-tabs button.active {
+  background-color: #033f63;
+  color: #fff;
+  border-color: #033f63;
+}
+
 .analytics-graphs {
   display: inline-block;
   flex-wrap: wrap;

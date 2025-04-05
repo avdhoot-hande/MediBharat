@@ -302,10 +302,10 @@ const AdminDashboard = () => {
       <div className="sidebar">
         <h3>MediBharat Admin</h3>
         <ul>
+        <li onClick={() => setActiveTab("analytics")} className={activeTab === "analytics" ? "active" : ""}>Analytics</li>
           <li onClick={() => setActiveTab("addDoctor")} className={activeTab === "addDoctor" ? "active" : ""}>Add Doctor</li>
           <li onClick={() => setActiveTab("deleteDoctor")} className={activeTab === "deleteDoctor" ? "active" : ""}>Delete Doctor</li>
           <li onClick={() => setActiveTab("appointments")} className={activeTab === "appointments" ? "active" : ""}>Appointments</li>
-          <li onClick={() => setActiveTab("analytics")} className={activeTab === "analytics" ? "active" : ""}>Analytics</li>
         </ul>
       </div>
 

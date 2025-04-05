@@ -80,7 +80,7 @@ const hospitalData = [
   },
   {
     id: "max-hospital",
-    name: "max hospital",
+    name: "Max Hospital",
     location: "New Delhi",
     image: "https://th.bing.com/th/id/OIP.RlmIUU70-Xu38vlV5rr8mAHaEK?w=310&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
     description: "Max Super Specialty Hospital in New Delhi is a multi-specialty healthcare provider offering cutting-edge medical treatments. Established in 2000, it is renowned for its services in cardiac surgery, oncology, and neurosurgery. The hospital’s facilities ensure the best care for all patients.",
