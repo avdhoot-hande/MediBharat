@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import treatmentData from "../data/treatmentData";
-import "./TreatmentDetail.css";
+import "./treatmentdetail.css";
 
 const TreatmentDetail = () => {
   const { id } = useParams();
