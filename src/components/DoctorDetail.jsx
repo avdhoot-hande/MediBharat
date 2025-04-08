@@ -165,7 +165,7 @@ const DoctorDetail = () => {
           <h2 className="doctor-name">{doctor.name}</h2>
           <p className="doctor-specialization">{doctor.specialization}</p>
           <p><strong>Hospital:</strong> {doctor.hospital_name}</p>
-          <p><strong>Experience:</strong> {doctor.years} years</p>
+          <p><strong>Experience:</strong> {doctor.experience} years</p>
           <p><strong>Price:</strong> ₹{doctor.price?.toLocaleString() || "Not available"}</p>
           <p><strong>Description:</strong> {doctor.description}</p>
           <Button variant="primary" className="mt-3" onClick={() => setShowModal(true)}>Enquire</Button>
