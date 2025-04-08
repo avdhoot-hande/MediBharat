@@ -19,7 +19,7 @@ const AdminDashboard = () => {
   const [searchDoctor, setSearchDoctor] = useState("");
   const [searchAppointment, setSearchAppointment] = useState("");
   const [newDoctor, setNewDoctor] = useState({
-    name: "", hospital_name: "", years: "", certification: "", specialization: "",
+    name: "", hospital_name: "", experience: "", certification: "", specialization: "",
     treatment: "", img: "", reviews: "", description: "", city: "", location: "",
     price: "", mail: "",
   });
@@ -79,19 +79,31 @@ const AdminDashboard = () => {
 
   const addDoctor = async (e) => {
     e.preventDefault();
+    console.log("Sending new doctor:", newDoctor); // already there
+  
+    // Basic validation
+    for (const key in newDoctor) {
+      if (!newDoctor[key]) {
+        console.warn(`Missing value for: ${key}`);
+      }
+    }
+  
     try {
-      await axios.post(`${BACKEND_URL}/doctors`, newDoctor);
+      const response = await axios.post(`${BACKEND_URL}/doctors`, newDoctor);
+      console.log("Response from server:", response);
       fetchDoctors();
       setNewDoctor({
-        name: "", hospital_name: "", years: "", certification: "", specialization: "",
+        name: "", hospital_name: "", experience: "", certification: "", specialization: "",
         treatment: "", img: "", reviews: "", description: "", city: "", location: "",
         price: "", mail: "",
       });
       setActionMessage("Doctor added successfully!");
     } catch (error) {
-      console.error("Error adding doctor:", error);
+      console.error("Error adding doctor:", error.response?.data || error.message);
+      setActionMessage("Failed to add doctor. Check console.");
     }
   };
+  
 
   const deleteDoctor = async (id) => {
     try {
