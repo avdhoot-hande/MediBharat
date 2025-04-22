@@ -195,7 +195,7 @@ const AdminDashboard = () => {
             <Tooltip />
           </PieChart>
 
-          <h3>Appointments by Month</h3>
+          <h3>Enquiries by Month</h3>
           <BarChart width={600} height={350} data={monthData}>
             <XAxis dataKey="name" />
             <YAxis />
@@ -309,7 +309,7 @@ const AdminDashboard = () => {
           <li onClick={() => setActiveTab("analytics")} className={activeTab === "analytics" ? "active" : ""}>Analytics</li>
           <li onClick={() => setActiveTab("addDoctor")} className={activeTab === "addDoctor" ? "active" : ""}>Add Doctor</li>
           <li onClick={() => setActiveTab("deleteDoctor")} className={activeTab === "deleteDoctor" ? "active" : ""}>Delete Doctor</li>
-          <li onClick={() => setActiveTab("appointments")} className={activeTab === "appointments" ? "active" : ""}>Appointments</li>
+          <li onClick={() => setActiveTab("appointments")} className={activeTab === "appointments" ? "active" : ""}>Enquiries</li>
         </ul>
       </div>
 
@@ -373,10 +373,10 @@ const AdminDashboard = () => {
 
         {activeTab === "appointments" && (
           <div>
-            <h2>Appointments</h2>
+            <h2>Enquiries</h2>
             <input
               type="text"
-              placeholder="Search Appointments by name"
+              placeholder="Search Enquiries by name"
               className="form-control mb-3"
               value={searchAppointment}
               onChange={(e) => setSearchAppointment(e.target.value)}
@@ -425,7 +425,7 @@ const AdminDashboard = () => {
           <div>
             <h2>Analytics</h2>
             <div className="analytics-tabs">
-              <button onClick={() => setAnalyticsSection("appointments")} className={analyticsSection === "appointments" ? "active" : ""}>Appointments</button>
+              <button onClick={() => setAnalyticsSection("appointments")} className={analyticsSection === "appointments" ? "active" : ""}>Enquiries</button>
               <button onClick={() => setAnalyticsSection("doctors")} className={analyticsSection === "doctors" ? "active" : ""}>Doctors</button>
               <button onClick={() => setAnalyticsSection("patients")} className={analyticsSection === "patients" ? "active" : ""}>Patients</button>
               <button onClick={() => setAnalyticsSection("reviews")} className={analyticsSection === "reviews" ? "active" : ""}>Reviews</button>
